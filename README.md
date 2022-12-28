@@ -1,3 +1,3 @@
-# Blog - Achique Luis Daniel
+# Blog - Achique Luis Daniel 🍊
 
-Blog sobre Frontend 💗, Planificación 📆 y Autocuidado 🍊
+Blog sobre Frontend, Planificación y Autocuidado 

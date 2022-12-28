@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% include "layouts/head.html" %} 
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% include "layouts/header.html" %} 
+    {% block body %}
+      {{ content | safe }}
+    {% endblock %}
+  </body>
+</html>

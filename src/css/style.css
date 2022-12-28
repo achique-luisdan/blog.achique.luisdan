@@ -1,0 +1,23 @@
+@import url('./normalize.css');
+
+:root {
+    --surface: #f2f2f2;
+}
+
+body {
+    font-family: "Open Sans",  Arial, Helvetica, Verdana;
+}
+
+body > header{
+    position: sticky;
+    top: 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: var(--surface);
+    box-shadow: 1px 1px 2px 1px #00000033;
+}

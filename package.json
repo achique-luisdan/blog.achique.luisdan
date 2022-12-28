@@ -1,0 +1,23 @@
+{
+  "name": "blog.achique.luisdan",
+  "version": "1.0.0",
+  "description": "Blog sobre Frontend 💗, Planificación 📆 y Auto cuidado 🍊",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achique-luisdan/blog.achique.luisdan.git"
+  },
+  "keywords": [],
+  "author": "Achique Machado Luis Daniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/achique-luisdan/blog.achique.luisdan/issues"
+  },
+  "homepage": "https://github.com/achique-luisdan/blog.achique.luisdan#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2"
+  }
+}
