@@ -8,7 +8,11 @@ export const MDXComponents = {
 };
 
 export default function Post ({source, frontmatter}) {
-    return  <MDXRemote compiledSource={source.compiledSource}   />
+    return (
+        <main className="container">
+            <MDXRemote compiledSource={source.compiledSource}  />
+        </main>
+    )
 }
 
 export async function getStaticProps ({ params }){
