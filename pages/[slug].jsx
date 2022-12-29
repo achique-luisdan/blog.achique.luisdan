@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote";
 import Posts from "../components/Posts";
-
+import Head from 'next/head'
 import { getFileBySlug, getAllFilesMetadata } from "../utils/reader-mdx"
 
 
@@ -9,12 +9,21 @@ export const MDXComponents = {
 };
 
 export default function Post ({source, frontmatter, posts}) {
+  console.log (frontmatter.title)
     return (
+      <>
+      <Head>
+        <title>{frontmatter.title}</title>
+        <meta name="description" content={frontmatter.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      
         <main className="container">
             <MDXRemote { ...source}  />
             <Posts posts={posts}/>
         </main>
-
+      </>
     )
 }
 

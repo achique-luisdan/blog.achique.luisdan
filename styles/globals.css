@@ -35,7 +35,7 @@ nav {
     padding-right: 5%;
 }
 
-nav > div.branding {
+nav > a.branding {
     display: flex;
     flex-wrap: wrap;
     width: max-content;
@@ -66,7 +66,7 @@ input.search:active  {
     border: solid #666666 1px;
 }
 
-span.name {
+a.branding > span.name {
     font-weight: 800;
     font-size: x-large;
 }
@@ -285,4 +285,8 @@ ul.posts {
 
 .primary:hover {
     color: var(--primary);
+}
+
+span.doctype-tag, span.name {
+    color: white;
 }

@@ -1,8 +1,10 @@
+import Link from "next/link"
+
 export function Header (){
   return (
       <header>
         <nav>
-          <div className="branding">
+            <Link href={'/'} className="branding">
             <image src="/logo.svg" alt="Logo" />
             <span className="name">
               <p>Achique</p>
@@ -11,7 +13,7 @@ export function Header (){
             <span className="blog">
               BLOG
             </span>
-          </div>
+            </Link>
           <div className="box-search">
             <image src="/lens.svg" alt="Icono de lupa." className="lens" />
             <input type="text" placeholder="Buscar" className="search" />
