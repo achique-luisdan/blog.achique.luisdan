@@ -3,7 +3,8 @@
         "Autocuidado",
         "frontmatter",
         "github",
-        "luisdan"
+        "luisdan",
+        "rehype"
     ],
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#f9ac68",

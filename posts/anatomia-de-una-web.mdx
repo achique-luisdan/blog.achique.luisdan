@@ -9,12 +9,13 @@ date: '28 de Diciembre 2022'
 
 Contiene metadatos útiles para navegadores y buscadores, también realiza importaciones de hojas de estilo, tipografías u otros recursos.
 
-```json
-return {
-    source,
-    frontmatter: {
-      slug,
-      ...data
-    }
+```javascript
+// -- Helper functions --------------------------------
+function bundle(b) {
+  return b.bundle()
+    .on('error', (err) => console.log(err);)
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('./public'));
 }
 ```  

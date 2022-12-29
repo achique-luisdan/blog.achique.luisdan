@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
+import mdxPrism from "mdx-prism";
 
 const root = process.cwd ();
 
@@ -14,14 +15,11 @@ export const getFileBySlug = async (slug) => {
   const mdxSource = fs.readFileSync (path.join (root, 'posts', `${slug}.mdx`), 'utf-8')
   const { data, content } = await matter (mdxSource);
   const source = await serialize (content,  {
-    scope: {},
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
-      format: 'mdx',
+      rehypePlugins: [mdxPrism],
       development: false,
     },
-    parseFrontmatter: false,
   })
   return {
     source,

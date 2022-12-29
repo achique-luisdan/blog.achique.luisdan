@@ -10,7 +10,7 @@ export const MDXComponents = {
 export default function Post ({source, frontmatter}) {
     return (
         <main className="container">
-            <MDXRemote compiledSource={source.compiledSource}  />
+            <MDXRemote { ...source}  />
         </main>
     )
 }

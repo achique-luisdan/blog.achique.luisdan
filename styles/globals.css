@@ -1,5 +1,5 @@
 @import url('./normalize.css');
-
+@import url('./prism.css');
 :root {
     --surface: #f2f2f2;
     --surface-hover: #d3d3d3;
@@ -110,4 +110,12 @@ main.container {
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 2%;
+}
+
+pre.language-javascript {
+    border-radius: 20px;
+}
+
+span.parameter {
+    color: white;
 }
