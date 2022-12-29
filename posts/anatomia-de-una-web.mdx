@@ -1,0 +1,22 @@
+---
+title: 'Anatomía de una Web'
+date: '28 de Diciembre 2022'
+tag: 'html'
+---
+
+# Anatomía de una Web
+
+## Parte I
+
+Contiene metadatos útiles para navegadores y buscadores, también realiza importaciones de hojas de estilo, tipografías u otros recursos.
+
+```javascript
+// -- Helper functions --------------------------------
+function bundle(b) {
+  return b.bundle()
+    .on('error', (err) => console.log(err);)
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('./public'));
+}
+```  
