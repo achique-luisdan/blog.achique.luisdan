@@ -9,7 +9,6 @@ export const MDXComponents = {
 };
 
 export default function Post ({source, frontmatter, posts}) {
-  console.log (frontmatter.title)
     return (
       <>
       <Head>
