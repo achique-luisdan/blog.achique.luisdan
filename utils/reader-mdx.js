@@ -30,11 +30,17 @@ export const getFileBySlug = async (slug) => {
   }
 } 
 
-export const getAllFilesMetadata = () => {
+export const getAllFilesMetadata = (qty, tags=false) => {
   const files = getFiles();
-  return files.map ((slug) => {
+  if (qty === -1){
+    qty = files.length;
+  }
+  const selected = files.slice(0, qty)
+  return selected.map ((slug) => {
     const mdxSource = fs.readFileSync (path.join (root, 'posts', slug), 'utf-8');
     const { data } = matter (mdxSource, {});
     return {...data, slug: slug.replace('.mdx', '')};
-  }, [])
+  }).filter (element => {
+    return element.tag !== 'is'; 
+  } )
 }

@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { getAllFilesMetadata } from '../utils/reader-mdx'
 
-export default function Home({ posts }) {
+import { getAllFilesMetadata } from '../utils/reader-mdx'
+import Posts from '../components/Posts'
+import { Sidebar } from '../components/Sidebar'
+
+export default function Home({ posts, tags }) {
   return (
     <>
       <Head>
@@ -12,26 +15,41 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <main className="container">
-        <ul>
-          {posts.map ((post) => (
-            <li key={post.slug}>
-              <Link href={`/${post.slug}`}>
-                <h3> 
-                {post.title}
-                </h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <main className="container home">
+      <Sidebar tags={tags} />
+      <section>
+        <h1> Últimos Artículos </h1>
+          <Posts posts={posts}></Posts>
+          <Link href={'/todos'}>
+            <h2 className='primary'> 
+              Ver todos 
+            </h2>
+          </Link>
+        </section>
       </main>
     </>
   )
 }
 
 export async function getStaticProps(){
-  const posts = await getAllFilesMetadata();
+  const posts = await getAllFilesMetadata(6);
+  let tags = [
+    {
+      name: 'HTML',
+      slug: 'html'
+    },
+    {
+      name: 'CSS',
+      slug: 'css'
+    },
+  ]
+  tags.map (tag => {
+    const postByTag = posts.filter (post => {
+      return post.tag === tag.slug
+    })
+    tag.qty = postByTag.length;
+  });
   return {
-    props: { posts }
+    props: { posts, tags }
   }
 }
