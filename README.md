@@ -52,6 +52,13 @@ Corrige automático
 npm run lint-fix
 ```
 
+## Compilación (Build) ✅
+
+```bash
+npm run build
+```
+
+Compilado final se genera en la carpeta **out**. 
 
 ## Reseñas (Reviews) 💞
 
