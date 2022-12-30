@@ -1,7 +1,7 @@
 @import url('./normalize.css');
 @import url('./prism.css');
 :root {
-    --surface: #f2f2f2;
+    --surface: #e7e7e7;
     --surface-hover: #d3d3d3;
     --on-surface: #333333;
     --primary: #f79137;
@@ -20,6 +20,7 @@
 
 body {
     font-family: "Open Sans",  Arial, Helvetica, Verdana;
+    background-color: var(--surface)
 }
 
 nav {
@@ -221,7 +222,7 @@ li.to-tag > .qty {
 }
 
 h3.rol {
-    color: #b3b3b3;
+    color: #808080;
     margin-bottom: 20px;
 }
 

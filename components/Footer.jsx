@@ -5,7 +5,7 @@ export function Footer (){
             <span>© 2023</span>
             <p>
                 <span>
-                    Hecho con mucho 💗 en 🇻🇪 .
+                    Hecho con mucho ❤️ en 🇻🇪 .
                 </span>
             </p>
         </footer>
