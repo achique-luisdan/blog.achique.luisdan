@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { ThemeProvider } from 'next-themes';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-  
+
+import '../styles/globals.css';
+
 const themes = [
   'light', 'dark'
 ];
@@ -31,7 +32,6 @@ function getIconsTheme (theme){
 
 export function ThemeChanger ()  {
   const { theme, setTheme } = useTheme();
-  
   return (
     <>
       <div className="mode">
@@ -44,27 +44,23 @@ export function ThemeChanger ()  {
           </div>
         </button>
       </div>
-      <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="blank">
+      <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="_blank">
         <span className="badge">
         7       
           <Image src="/start_dark.svg" alt="Icono estrella."  width={8} height={8} />
         </span>
-        <Image src={`/${getIconsTheme(theme).selected}_github.svg`} alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+        <div data-hide-on-theme="dark">
+          <Image src="light_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+        </div>
+        <div data-hide-on-theme="light">
+          <Image src="dark_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+        </div>
       </Link>
     </>
   );
 }
-import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (  
     <ThemeProvider enableSystem={true}>
@@ -89,6 +85,14 @@ export default function App({ Component, pageProps }) {
         </nav>
       </header>
       <Component {...pageProps} />
+      <footer>
+        <span>© 2023</span>
+        <p>
+          <span>
+                    Hecho con mucho ❤️ en 🇻🇪 .
+          </span>
+        </p>
+      </footer>
     </ThemeProvider>
   );
   
