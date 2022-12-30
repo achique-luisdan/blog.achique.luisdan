@@ -1,7 +1,7 @@
 @import url('./normalize.css');
 @import url('./prism.css');
 :root {
-    --surface: #f2f2f2;
+    --surface: #e7e7e7;
     --surface-hover: #d3d3d3;
     --on-surface: #333333;
     --primary: #f79137;
@@ -20,13 +20,14 @@
 
 body {
     font-family: "Open Sans",  Arial, Helvetica, Verdana;
+    background-color: var(--surface)
 }
 
 nav {
     display: flex;
     flex-wrap: wrap;
     padding: 2px;
-    background-color: var(--surface);
+    background-color: rgb(218, 218, 218);
     box-shadow: 1px 1px 10px 1px #00000033;
     align-items: center;
     gap: 20px;
@@ -35,7 +36,7 @@ nav {
     padding-right: 5%;
 }
 
-nav > div.branding {
+nav > a.branding {
     display: flex;
     flex-wrap: wrap;
     width: max-content;
@@ -66,7 +67,7 @@ input.search:active  {
     border: solid #666666 1px;
 }
 
-span.name {
+a.branding > span.name {
     font-weight: 800;
     font-size: x-large;
 }
@@ -221,7 +222,7 @@ li.to-tag > .qty {
 }
 
 h3.rol {
-    color: #b3b3b3;
+    color: #808080;
     margin-bottom: 20px;
 }
 
@@ -285,4 +286,8 @@ ul.posts {
 
 .primary:hover {
     color: var(--primary);
+}
+
+span.doctype-tag, span.name {
+    color: white;
 }

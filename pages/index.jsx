@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
 
-import { getAllFilesMetadata } from '../utils/reader-mdx'
-import Posts from '../components/Posts'
-import { Sidebar } from '../components/Sidebar'
+import { getAllFilesMetadata } from '../utils/reader-mdx';
+import Posts from '../components/Posts';
+import { Sidebar } from '../components/Sidebar';
 
 export default function Home({ posts, tags }) {
   return (
@@ -16,9 +16,9 @@ export default function Home({ posts, tags }) {
       </Head>
       
       <main className="container home">
-      <Sidebar tags={tags} />
-      <section>
-        <h1> Últimos Artículos </h1>
+        <Sidebar tags={tags} />
+        <section>
+          <h1> Últimos Artículos </h1>
           <Posts posts={posts}></Posts>
           <Link href={'/todos'}>
             <h2 className='primary'> 
@@ -28,7 +28,7 @@ export default function Home({ posts, tags }) {
         </section>
       </main>
     </>
-  )
+  );
 }
 
 export async function getStaticProps(){
@@ -42,14 +42,14 @@ export async function getStaticProps(){
       name: 'CSS',
       slug: 'css'
     },
-  ]
+  ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {
-      return post.tag === tag.slug
-    })
+      return post.tag === tag.slug;
+    });
     tag.qty = postByTag.length;
   });
   return {
     props: { posts, tags }
-  }
+  };
 }

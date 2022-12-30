@@ -2,6 +2,7 @@
 title: 'Anatomía de una Web'
 date: '28 de Diciembre 2022'
 tag: 'html'
+description: 'Estructura de una web'
 ---
 
 # Anatomía de una Web
@@ -10,13 +11,21 @@ tag: 'html'
 
 Contiene metadatos útiles para navegadores y buscadores, también realiza importaciones de hojas de estilo, tipografías u otros recursos.
 
-```javascript
-// -- Helper functions --------------------------------
-function bundle(b) {
-  return b.bundle()
-    .on('error', (err) => console.log(err);)
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('./public'));
-}
+```html
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Tienda online de tortas, ponquesitos y gelatinas para endulzar los momentos con tu familia."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="./images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cakes Shop</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body></body>
+</html>
 ```  
