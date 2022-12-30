@@ -5,7 +5,6 @@ import { getFileBySlug, getAllFilesMetadata } from "../utils/reader-mdx";
 import { Title } from "../components/Title";
 
 export default function Post ({source, frontmatter, posts}) {
-  console.log (frontmatter);
   return (
     <>
       <Head>
