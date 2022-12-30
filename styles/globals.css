@@ -217,7 +217,7 @@ li.to-tag {
   padding: 2%;
   padding-left: 10%;
   padding-right: 10%;
-  background-color: #999999;
+  background-color: var(--foreground);
   margin-bottom: 6px;
   border-radius: 30px;
   align-items: center;
@@ -225,13 +225,13 @@ li.to-tag {
 
 li.to-tag > .title {
   width: 50%;
-  color: white;
+  color: var(--background);
   text-align: left;
 }
 
 li.to-tag > .qty {
   width: 50%;
-  color: white;
+  color: var(--background);
   text-align: right;
 }
 
