@@ -4,7 +4,8 @@
         "frontmatter",
         "github",
         "luisdan",
-        "rehype"
+        "rehype",
+        "unoptimized"
     ],
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#f9ac68",

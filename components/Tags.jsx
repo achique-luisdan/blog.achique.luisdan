@@ -18,7 +18,7 @@ export function Tags ({ tags }){
           tags.map ((tag) => (
             <li key={tag.slug}>
               <Link href={`/${tag.slug}`} className="to-tag">
-                <Image src={`${tag.name}.svg`} alt="Icono del Tema" width={25} height={25} />
+                <Image src={`/${tag.name}.svg`} alt="Icono del Tema" width={25} height={25} />
                 <h4 className='title'> 
                   { tag.name }
                 </h4>
