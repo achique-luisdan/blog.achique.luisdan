@@ -9,7 +9,7 @@ export default function Posts({ posts }) {
           posts.map ((post) => (
             <li key={post.slug}>
               <Link href={`/${post.slug}`} className="to-post">
-                <Image src={`${post.tag}.svg`} alt="Icono del Tema" width={40} height={40} />
+                <Image src={`/${post.tag}.svg`} alt="Icono del Tema" width={40} height={40} />
                 <div>
                   <h3 className='title'> 
                     { post.title }

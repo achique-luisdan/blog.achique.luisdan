@@ -19,7 +19,7 @@ export function Title ({content, isTag}){
   else {
     return (
       <section className="title-content">
-        <Image src={`${content.tag}.svg`} alt="Icono del Tema" width={50} height={50} />
+        <Image src={`/${content.tag}.svg`} alt="Icono del Tema" width={50} height={50} />
         <div>
           <h1 className='title'> 
             { content.title }
