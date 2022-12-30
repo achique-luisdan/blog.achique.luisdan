@@ -88,6 +88,7 @@ span.blog {
   align-self: flex-end;
   padding-bottom: 1%;
   color: #666666;
+  font-size: small;
 }
 
 input.search {
@@ -241,6 +242,8 @@ h3.rol {
 
 p.description {
   margin-bottom: 30px;
+  line-height: 26px;
+  font-size: 16px;
 }
 
 h1,

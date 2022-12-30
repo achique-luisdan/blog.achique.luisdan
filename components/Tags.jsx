@@ -8,10 +8,10 @@ export function Tags ({ tags }){
       <ul>
         <li className="to-tag">
           <h4 className='title'> 
-                      Tema
+            Tema
           </h4>
           <h4 className='qty'> 
-                        Artículos
+            Artículos
           </h4> 
         </li>
         {

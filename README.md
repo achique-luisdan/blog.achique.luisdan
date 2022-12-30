@@ -23,8 +23,8 @@ Las herramientas utilizadas en el desarrollo del proyecto fueron:
 - [React.js v18.2.0](https://reactjs.org/) - Biblioteca de JavaScript para crear interfaces de usuario.
 
 - [react-dom v18.2.0](https://es.reactjs.org/docs/react-dom.html) -  Paquete que proporciona métodos para la gestión del DOM con React.js.
-
-- [next-themes v0.2.1] - Paquete para tema claro o oscuro.
+ 
+- [next-themes v0.2.1](https://github.com/pacocoursey/next-themes) - Paquete para tema claro o oscuro.
   
 ## Instalación (Install) 🔧
 
