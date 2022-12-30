@@ -5,7 +5,7 @@ import { Footer } from '../components/Footer';
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="es">
       <Head />
       <body>
         <Header />
