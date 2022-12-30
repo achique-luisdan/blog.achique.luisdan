@@ -45,6 +45,10 @@ export async function getStaticPaths (){
       name: 'CSS',
       slug: 'css'
     },
+    {
+      name: 'JavaScript',
+      slug: 'javascript'
+    },
   ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {

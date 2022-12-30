@@ -8,7 +8,7 @@ export function Tags ({ tags }){
       <ul>
         <li className="to-tag">
           <h4 className='title'> 
-            Tema
+            Temas
           </h4>
           <h4 className='qty'> 
             Artículos
