@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { getAllFilesMetadata } from '../utils/reader-mdx'
-import Posts from '../components/Posts'
+import { getAllFilesMetadata } from '../utils/reader-mdx';
+import Posts from '../components/Posts';
 
 export default function Todos({ posts }) {
   return (
@@ -14,16 +14,16 @@ export default function Todos({ posts }) {
       </Head>
       
       <main className="container">
-      <h1> Todos los Artículos </h1>
+        <h1> Todos los Artículos </h1>
         <Posts posts={posts} all="true"></Posts>
       </main>
     </>
-  )
+  );
 }
 
 export async function getStaticProps(){
   const posts = await getAllFilesMetadata(-1);
   return {
     props: { posts }
-  }
+  };
 }

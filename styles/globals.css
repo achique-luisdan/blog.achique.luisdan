@@ -27,7 +27,7 @@ nav {
     display: flex;
     flex-wrap: wrap;
     padding: 2px;
-    background-color: var(--surface);
+    background-color: rgb(218, 218, 218);
     box-shadow: 1px 1px 10px 1px #00000033;
     align-items: center;
     gap: 20px;
