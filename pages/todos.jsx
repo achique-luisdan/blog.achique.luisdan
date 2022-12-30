@@ -10,10 +10,10 @@ export default function Todos({ posts }) {
         <title>Achique Luis Daniel🍊 | Frontend, Planificación y Autocuidado</title>
         <meta name="description" content="Blog sobre Desarrollo Web Frontend, Planificación y Autocuidado" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       
-      <main className="container">
+      <main className="content">
         <h1> Todos los Artículos </h1>
         <Posts posts={posts} all="true"></Posts>
       </main>

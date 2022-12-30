@@ -11,7 +11,7 @@ export function Header (){
             <p>Luis Daniel</p>
           </span>
           <span className="blog">
-              BLOG
+            BLOG
           </span>
         </Link>
         <div className="box-search">

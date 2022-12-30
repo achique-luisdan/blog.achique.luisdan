@@ -132,7 +132,7 @@ li {
 a.to-post {
     display: flex;
     width: 100%;
-    gap: 10px;
+    gap: 14px;
     padding: 1%;
     padding-left: 30px;
 }
@@ -251,8 +251,8 @@ main {
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
   }
   
   ::-webkit-scrollbar-track {
@@ -290,4 +290,29 @@ ul.posts {
 
 span.doctype-tag, span.name {
     color: white;
+}
+
+section.title-content {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+section.title-content > div {
+    display: flex;
+    flex-direction: column;
+}
+
+section.title-content > div > h1.title {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+main.content {
+    padding-top: 2%;
+    padding-left: 12%;
+    padding-right: 12%;
+    padding-bottom: 2%;
 }

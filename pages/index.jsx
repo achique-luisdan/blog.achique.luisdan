@@ -12,7 +12,7 @@ export default function Home({ posts, tags }) {
         <title>Achique Luis Daniel🍊 | Frontend, Planificación y Autocuidado</title>
         <meta name="description" content="Blog sobre Desarrollo Web Frontend, Planificación y Autocuidado" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon"  href="/favicon.png" />
       </Head>
       
       <main className="container home">
@@ -41,6 +41,10 @@ export async function getStaticProps(){
     {
       name: 'CSS',
       slug: 'css'
+    },
+    {
+      name: 'JavaScript',
+      slug: 'javascript'
     },
   ];
   tags.map (tag => {
