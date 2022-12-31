@@ -3,14 +3,15 @@ import { ThemeProvider } from 'next-themes';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-import '../styles/globals.css';
 import { getAllFilesMetadata } from '../utils/reader-mdx';
+import Footer from '../components/Footer';
+import '../styles/globals.css';
 
 const themes = [
   'light', 'dark'
 ];
-
 
 function getIconsTheme (theme){
   const index = themes.findIndex(element => element === theme);
@@ -35,33 +36,18 @@ function getIconsTheme (theme){
 export function ThemeChanger ()  {
   const { theme, setTheme } = useTheme();
   return (
-    <>
-      <div className="mode">
-        <button onClick={() => setTheme(getIconsTheme(theme).other)}>
-          <div data-hide-on-theme="dark">
-            <Image src="/light.svg" width={30} height={30}  alt="Selector de modo claro."/>
-          </div>
-          <div data-hide-on-theme="light">
-            <Image src="/dark.svg" width={30} height={30} alt="Modo oscuro." />
-          </div>
-        </button>
-      </div>
-      <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="_blank">
-        <span className="badge">
-        7       
-          <Image src="/start_dark.svg" alt="Icono estrella."  width={8} height={8} />
-        </span>
+    <div className="mode">
+      <button onClick={() => setTheme(getIconsTheme(theme).other)}>
         <div data-hide-on-theme="dark">
-          <Image src="light_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+          <Image src="/light.svg" width={30} height={30}  alt="Selector de modo claro."/>
         </div>
         <div data-hide-on-theme="light">
-          <Image src="dark_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+          <Image src="/dark.svg" width={30} height={30} alt="Modo oscuro." />
         </div>
-      </Link>
-    </>
+      </button>
+    </div>
   );
 }
-
 
 export async function getStaticProps(){
   const titles = await getAllFilesMetadata();
@@ -76,7 +62,6 @@ export async function getStaticProps(){
     pageProps: { titles }
   };
 }
-import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -118,18 +103,22 @@ export default function App({ Component, pageProps }) {
             </datalist>
           </div>
           <ThemeChanger />
+          <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="_blank">
+            <span className="badge">
+              7       
+              <Image src="/start_dark.svg" alt="Icono estrella."  width={8} height={8} />
+            </span>
+            <div data-hide-on-theme="dark">
+              <Image src="light_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+            </div>
+            <div data-hide-on-theme="light">
+              <Image src="dark_github.svg" alt="Enlace al repositorio del blog en GitHub."  width={30} height={30} />
+            </div>
+          </Link>
         </nav>
       </header>
       <Component {...pageProps} />
-      <footer>
-        <span>© 2023</span>
-        <p>
-          <span>
-            Hecho con mucho ❤️ en 🇻🇪 .
-          </span>
-        </p>
-      </footer>
+      <Footer />
     </ThemeProvider>
   );
-  
 }
