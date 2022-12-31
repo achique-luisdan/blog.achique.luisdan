@@ -5,6 +5,9 @@ export function Sidebar ({tags}){
   return (
     <aside className="sidebar">
       <div>
+        <div className="circle">
+        🍊
+        </div>
         <Image src={'/photo.png'} width={150} height={150} alt={'Foto'} priority="true" />
       </div>
       <h2>
