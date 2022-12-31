@@ -14,6 +14,11 @@ Blog sobre Frontend, Planificación y Autocuidado
 * Categoriza artículos por temas (Tags).
 
 * Estiliza sintaxis de fragmentos de códigos (Snippets Code Highlighting).
+
+* Preferencia de temas modo claro y oscuro (Dark or Light Mode Theme)
+
+* Campo de búsqueda de artículos con autocomplete básico (Autocomplete)
+ 
 ## Herramientas (Tools) 🛠️
 
 Las herramientas utilizadas en el desarrollo del proyecto fueron:
@@ -68,4 +73,4 @@ Pronto
 
 ## Mejora Continua 🚀
 
-Modo Oscuro
+* Ordenar últimos artículos por fecha de publicación.
