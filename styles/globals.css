@@ -360,3 +360,25 @@ a.to-post > img {
   height: auto;
 
 }
+
+aside.sidebar > div {
+  position: relative;  
+  width: min-content;
+  height:  min-content;
+  margin: auto;
+}
+
+div.circle {
+  border-radius: 50%;
+  background-color: var(--foreground);
+  width: min-content;
+  height: min-content;
+  position: absolute;
+  right: 1%;
+  top: 66%;
+  padding: 3%;
+}
+
+img {
+  pointer-events: none;
+}
