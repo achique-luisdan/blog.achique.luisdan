@@ -2,8 +2,10 @@ import Link from 'next/link';
 import { ThemeProvider } from 'next-themes';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import '../styles/globals.css';
+import { getAllFilesMetadata } from '../utils/reader-mdx';
 
 const themes = [
   'light', 'dark'
@@ -60,9 +62,35 @@ export function ThemeChanger ()  {
   );
 }
 
-export default function App({ Component, pageProps }) {
 
-  return (  
+export async function getStaticProps(){
+  const titles = await getAllFilesMetadata();
+  titles.map (element => {
+    delete element.date;
+    delete element.tag;
+    delete element.description;
+    delete element.reading; 
+    return element; 
+  });
+  return {
+    pageProps: { titles }
+  };
+}
+import { useRouter } from 'next/router';
+
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const [search, setSearch] = useState('');
+  function navigationTo  (slug)  {
+    const index = pageProps.titles.findIndex (post=> post.slug === slug);
+    setSearch (slug);
+    if (index > -1){    
+      router.push(`/${slug}`);
+      setSearch ('');
+    }
+  }
+
+  return (   
     <ThemeProvider enableSystem={true}>
       <header>
         <nav>
@@ -78,10 +106,18 @@ export default function App({ Component, pageProps }) {
           </Link>
           <div className="box-search">
             <Image src="/lens.svg" alt="Icono de lupa." className="lens" width={10} height={18} />
-            <input type="text" placeholder="Buscar" className="search" />
+            <input list="posts" placeholder="Buscar" className="search" onChange={(e) => { navigationTo(e.target.value); }} value={ search }/>
+            <datalist id="posts">
+              {
+                pageProps.titles.map ((post) => (
+                  <option value={post.slug} key={post.slug}>
+                    {post.title}
+                  </option>
+                ))
+              }
+            </datalist>
           </div>
           <ThemeChanger />
-        
         </nav>
       </header>
       <Component {...pageProps} />
@@ -89,7 +125,7 @@ export default function App({ Component, pageProps }) {
         <span>© 2023</span>
         <p>
           <span>
-                    Hecho con mucho ❤️ en 🇻🇪 .
+            Hecho con mucho ❤️ en 🇻🇪 .
           </span>
         </p>
       </footer>

@@ -27,7 +27,7 @@ export function Title ({content, isTag}){
           <span className='date'> 
             { content.date +' ' } 
             • { content.reading } minutos de lectura 
-            • <Link href={ `https://github.com/achique-luisdan/blog.achique.luisdan/blob/main/posts/${content.slug}.mdx`} target="_blank">¿Una errata o sugerencia? Edita el artículo</Link>
+            • <Link href={ `https://github.com/achique-luisdan/blog.achique.luisdan/blob/main/posts/${content.slug}.mdx`} target="_blank">¿Errores o sugerencias? Edita el artículo</Link>
           </span>
         </div>
       </section>

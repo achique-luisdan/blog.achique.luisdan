@@ -22,8 +22,16 @@ export default function Todos({ posts }) {
 }
 
 export async function getStaticProps(){
-  const posts = await getAllFilesMetadata(-1);
+  const posts = await getAllFilesMetadata();
+  let titles = JSON.parse (JSON.stringify (posts));
+  titles.map (element => {
+    delete element.date;
+    delete element.tag;
+    delete element.description;
+    delete element.reading; 
+    return element; 
+  });
   return {
-    props: { posts }
+    props: { posts, titles: posts }
   };
 }

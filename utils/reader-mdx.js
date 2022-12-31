@@ -30,7 +30,7 @@ export const getFileBySlug = async (slug) => {
   };
 }; 
 
-export const getAllFilesMetadata = (qty) => {
+export const getAllFilesMetadata = (qty =-1) => {
   const files = getFiles();
   if (qty === -1){
     qty = files.length;
