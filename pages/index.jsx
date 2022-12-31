@@ -53,7 +53,16 @@ export async function getStaticProps(){
     });
     tag.qty = postByTag.length;
   });
+  let titles = await getAllFilesMetadata();
+  titles.map (element => {
+    delete element.date;
+    delete element.tag;
+    delete element.description;
+    delete element.reading; 
+    return element; 
+  });
+
   return {
-    props: { posts, tags }
+    props: { posts, tags, titles }
   };
 }

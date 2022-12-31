@@ -26,11 +26,21 @@ export default function Post ({source, frontmatter, posts}) {
 export async function getStaticProps ({ params }){
   const {source, frontmatter} = await getFileBySlug(params.slug);
   const posts = await getAllFilesMetadata();
+  const titles = JSON.parse (JSON.stringify (posts));
+  titles.map (element => {
+    delete element.date;
+    delete element.tag;
+    delete element.description;
+    delete element.reading; 
+    return element; 
+  });
+
   const postsByTag = posts.filter (post => {
     return post.tag === params.slug;
   });
+
   return {
-    props: { source, frontmatter, posts: postsByTag },
+    props: { source, frontmatter, posts: postsByTag, titles },
   };
 }
 
