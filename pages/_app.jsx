@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { Analytics } from '@vercel/analytics/react';
 
 import { getAllFilesMetadata } from '../utils/reader-mdx';
 import Footer from '../components/Footer';
@@ -126,6 +127,7 @@ export default function App({ Component, pageProps }) {
         </nav>
       </header>
       <Component {...pageProps} />
+      <Analytics />
       <Footer />
     </ThemeProvider>
   );
