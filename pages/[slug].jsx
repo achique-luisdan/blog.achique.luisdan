@@ -24,7 +24,9 @@ export default function Post ({source, frontmatter, posts}) {
 }
 
 export async function getStaticProps ({ params }){
-  const {source, frontmatter} = await getFileBySlug(params.slug);
+  let sourceState;
+  let frontmatterState;
+
   const posts = await getAllFilesMetadata();
   const titles = JSON.parse (JSON.stringify (posts));
   titles.map (element => {
@@ -34,13 +36,24 @@ export async function getStaticProps ({ params }){
     delete element.reading; 
     return element; 
   });
+  try {
+    const {source, frontmatter} = await getFileBySlug(params.slug);
+    sourceState = source;
+    frontmatterState = frontmatter;
+  }
+  catch (error) {
+    return {
+      notFound: true,
+      props: { posts: [], titles },
+    };
+  }
 
   const postsByTag = posts.filter (post => {
     return post.tag === params.slug;
   });
 
   return {
-    props: { source, frontmatter, posts: postsByTag, titles },
+    props: { source: sourceState, frontmatter: frontmatterState, posts: postsByTag, titles },
   };
 }
 
@@ -80,6 +93,6 @@ export async function getStaticPaths (){
   paths = [...paths , ...pathsTags];
   return {
     paths, 
-    fallback: false
+    fallback: "blocking"
   };
 }

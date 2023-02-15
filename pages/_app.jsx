@@ -50,14 +50,22 @@ export function ThemeChanger ()  {
 }
 
 export async function getStaticProps(){
-  const titles = await getAllFilesMetadata();
-  titles.map (element => {
-    delete element.date;
-    delete element.tag;
-    delete element.description;
-    delete element.reading; 
-    return element; 
-  });
+  let titles = [];
+  try {  
+    titles = getAllFilesMetadata();
+    titles.map (element => {
+      delete element.date;
+      delete element.tag;
+      delete element.description;
+      delete element.reading; 
+      return element; 
+    });
+  }
+  catch(e){
+    console.log(e);
+  }
+
+  console.log (titles);
   return {
     pageProps: { titles }
   };
@@ -94,7 +102,7 @@ export default function App({ Component, pageProps }) {
             <input list="posts" placeholder="Buscar" className="search" onChange={(e) => { navigationTo(e.target.value); }} value={ search }/>
             <datalist id="posts">
               {
-                pageProps.titles.map ((post) => (
+                pageProps.titles && pageProps.titles.map ((post) => (
                   <option value={post.slug} key={post.slug}>
                     {post.title}
                   </option>
