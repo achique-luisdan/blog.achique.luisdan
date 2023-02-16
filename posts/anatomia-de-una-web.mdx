@@ -2,13 +2,13 @@
 title: 'Anatomía de una Web'
 date: '28 de Diciembre 2022'
 tag: 'html'
-description: 'Estructura de una web'
-reading: '2'
+description: 'La anatomía básica de una página web es la estructura esencial que la conforma: head y body (cabeza y cuerpo). Las etiquetas son las encargas de definir la estructura.'
+reading: '5'
 ---
 
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque accusamus ratione at molestiae nam laboriosam cum neque maxime voluptatibus commodi dolores perferendis harum, laudantium ducimus aliquid ullam quasi saepe hic?
+La anatomía básica de una página web es la estructura esencial que la conforma: head y body (cabeza y cuerpo). Las etiquetas son las encargas de definir la estructura.
 
-## Head
+## Head `<head></head>`
 
 Contiene metadatos útiles para navegadores y buscadores, también realiza importaciones de hojas de estilo, tipografías u otros recursos.
 
@@ -21,12 +21,166 @@ Contiene metadatos útiles para navegadores y buscadores, también realiza impor
       name="description"
       content="Tienda online de tortas, ponquesitos y gelatinas para endulzar los momentos con tu familia."
     />
+    <meta
+      name="keywords"
+      content="tienda, tortas, ponquesitos, gelatinas, dulces"
+    />
     <meta name="robots" content="index, follow" />
-    <link rel="icon" href="./images/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cakes Shop</title>
+    <link rel="icon" href="./images/favicon.png" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body></body>
 </html>
-```  
+```
+
+1.  Indica al navegador que es código HTML5
+
+```html
+<!DOCTYPE html>
+```
+
+2. Elemento raíz, encierra toda la página
+
+```html
+<html lang="es"></html>
+```
+
+- Idioma del contenido
+  `lang="es"`
+
+3. Información no visible e importaciones
+
+```html
+<head> </head>
+```
+
+4. Metainformación sobre el documento
+
+- Permite caracteres especiales (ñ, á, ¿, emojis)
+
+```html
+<meta charset="UTF-8" />
+```
+
+- Descripción, ayuda en las búsquedas del navegador
+
+```html
+<meta
+  name="description"
+  content="Tienda online de tortas, ponquesitos y gelatinas para endulzar los momentos con tu familia."
+/>
+```
+
+- Autoriza escaneo de robots buscadores
+
+```html
+<meta name="robots" content="index, follow" />
+```
+
+- Ayuda al diseño adaptado a dispositivos
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```
+
+5. Título, ayuda en las búsquedas del navegador
+
+```html
+<title>Cakes Shop</title>
+```
+
+6. Importación de recursos
+
+- Importa icono
+
+```html
+<link rel="icon" href="./images/favicon.png" />
+```
+
+- Importa hojas de estilos
+
+```html
+<link rel="stylesheet" href="./css/style.css" />
+```
+
+## Body `<body></body>`
+
+7. Encabezado: logo, menú de navegación, campo de búsqueda, etc.
+
+```html
+<header>
+  <img src="./images/logo.svg" alt="Logo" />
+  <navbar>
+    <ul>
+      <li>
+        <a>Promociones</a>
+      </li>
+      <li>
+        <a>Productos</a>
+      </li>
+      <li>
+        <a>Pedidos </a>
+      </li>
+    </ul>
+  </navbar>
+</header>
+```
+
+8. Contenido principal del tema central o funcionalidad
+
+```html
+<main>
+  <section>
+    <div>
+      <h2>¡Endulzamos los mejores momentos con tu familia!</h2>
+      <h6>Dulces y juntos siempre.</h6>
+      <button>Pedir Ahora</button>
+    </div>
+    <div>
+      <article>
+        <img src="./images/cakel.jpg" alt="Torta 1" />
+        <img src="./images/cake2.jpg" alt="Torta 2" />
+        <img src="./images/cake3.jpg" alt="Torta 3" />
+      </article>
+      <div>
+        <button></button>
+        <button></button>
+        <button></button>
+      </div>
+    </div>
+  </section>
+</main>
+```
+
+9. Pie de página, derechos y enlaces
+
+```html
+<footer>
+  <div>
+    <img src="./images/lLogo.svg" alt="Logo" />
+    <ul>
+      <li>
+        <a href="#">
+          <img src="./images/facebook.png" alt="Ir a Facebook" />
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="./images/twitter.png" alt="Ir a Twitter" />
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="./images/instagram.png" alt="Ir a Instagram" />
+        </a>
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <div>
+    <h3>Cakes Shop (C) 2022. Todos los derechos reservados.</h3>
+  </div>
+</footer>
+```

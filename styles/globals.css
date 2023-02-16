@@ -134,7 +134,7 @@ a {
   text-decoration: none;
 }
 
-li {
+ul.posts > li, aside > section > ul {
   list-style: none;
 }
 
@@ -350,8 +350,8 @@ div.mode > button {
 main.content > p {
   font-size: 18px;
   line-height: 28px;
-  margin: 0 auto;
-  margin-bottom: 32px;
+  margin: 0;
+  margin-bottom: 12px;
   word-break: break-word
 }
 
@@ -362,7 +362,7 @@ a.to-post > img {
 }
 
 aside.sidebar > div {
-  position: relative;  
+  position: relative;
   width: min-content;
   height:  min-content;
   margin: auto;
@@ -473,13 +473,8 @@ img {
     transform: rotateX(0);
   }
 }
-    
 
-
-
-
-
-.zoom-area { 
+.zoom-area {
   max-width: 490px;
   margin: 30px auto 30px;
   font-size: 19px;
@@ -487,4 +482,17 @@ img {
 }
 .link-container {
   text-align: center;
+}
+
+main.content > ol > li, main.content > ul > li {
+  padding: 1%;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  margin-bottom: 12px;
 }

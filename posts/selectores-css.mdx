@@ -3,10 +3,76 @@ title: 'Selectores CSS'
 date: '29 de Diciembre 2022'
 tag: 'css'
 description: 'Selectores CSS, Básicos'
-reading: '2'
+reading: '10'
 ---
 # Selectores CSS
 
 ## ¿Qué es un Selector?
 
 Sirven para definir estilos que se quiere dar a elementos específicos. Cada uno tiene su propia sintaxis y comportamiento.
+
+### Universal
+
+Selecciona todos los elementos.
+
+> **Ejemplo:** `*` aplica fondo rosa y letras rojas a todos los elementos.
+
+```css
+* {
+  background: pink;
+  color: red
+}
+```
+
+### Elemento o Tipo
+
+Selecciona los elementos cuya etiqueta coincida.
+
+> **Ejemplo:** selecciona los `<p>` párrafos y cambia color del texto a azul.
+
+```css
+p {
+  color: blue;
+}
+```
+
+### Clase
+
+Selecciona todos los elementos que tienen el atributo de clase dado.
+
+> **Ejemplo:** `.incorrect` aplica fondo rojo a todos los elementos que tenga la clase "incorrect".
+
+```css
+.incorrect {
+  background: red;
+}
+```
+
+### Identificador
+
+Selecciona un elemento basado en el valor de su atributo id.
+
+> **Ejemplo:** `#resume` aplica negrita al elemento que tiene el id "resume".
+  > No se debe repetir el id en varios elementos.
+```css
+#resume {
+  font-weight: bold;
+}
+```
+
+### Atributo
+
+Selecciona todos los elementos que correspondan a un atributo específico o a un valor de atributo especifico.
+
+> **Ejemplo:** `a[href]` elegirá todos los enlaces, mientras que `a[href="https://notices.com"]` únicamente escogerá los enlaces con la URL "https://notices.com".
+
+```css
+a[href]{
+  text-decoration: none;
+  color: blue;
+}
+
+a[href="https://notices.com"] {
+  color: green;
+}
+```
