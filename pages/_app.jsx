@@ -23,7 +23,7 @@ function getIconsTheme (theme){
     const others = themes.filter ((element, i) => i !== index);
     icons = {
       selected,
-      other: others[0] 
+      other: others[0]
     };
   } else {
     icons = {
@@ -52,21 +52,20 @@ export function ThemeChanger ()  {
 
 export async function getStaticProps(){
   let titles = [];
-  try {  
+  try {
     titles = getAllFilesMetadata();
     titles.map (element => {
       delete element.date;
       delete element.tag;
       delete element.description;
-      delete element.reading; 
-      return element; 
+      delete element.reading;
+      return element;
     });
   }
   catch(e){
     console.log(e);
   }
 
-  console.log (titles);
   return {
     pageProps: { titles }
   };
