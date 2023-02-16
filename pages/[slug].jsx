@@ -13,7 +13,7 @@ export default function Post ({source, frontmatter, posts}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon"  href="/favicon.png" />
       </Head>
-      
+
       <main className="content">
         <Title content={frontmatter} isTag={ frontmatter.tag === 'is' }/>
         <MDXRemote { ...source} />

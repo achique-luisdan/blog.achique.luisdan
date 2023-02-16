@@ -12,7 +12,7 @@ export default function Todos({ posts }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      
+
       <main className="content">
         <h1> Todos los Artículos </h1>
         <Posts posts={posts} all="true"></Posts>
@@ -28,8 +28,8 @@ export async function getStaticProps(){
     delete element.date;
     delete element.tag;
     delete element.description;
-    delete element.reading; 
-    return element; 
+    delete element.reading;
+    return element;
   });
   return {
     props: { posts, titles: posts }

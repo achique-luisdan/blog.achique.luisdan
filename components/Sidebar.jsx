@@ -19,10 +19,10 @@ export function Sidebar ({tags}){
         </p>
       </h2>
       <h3 className="rol">
-                Software Developer
+        Software Developer
       </h3>
       <p className="description">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint ducimus nobis, repellat vero sunt dolore, molestiae praesentium quisquam laborum alias beatae facere. Maiores sit perferendis officiis, placeat laborum vel earum!.
+        Joven soñador, apasionado del desarrollo de software de valor, con 7 años de experiencia, consultor y creador de contenidos educativos abiertos.
       </p>
       <Tags tags={tags}></Tags>
     </aside>

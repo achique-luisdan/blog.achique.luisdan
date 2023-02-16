@@ -78,13 +78,13 @@ export default function App({ Component, pageProps }) {
   function navigationTo  (slug)  {
     const index = pageProps.titles.findIndex (post=> post.slug === slug);
     setSearch (slug);
-    if (index > -1){    
+    if (index > -1){
       router.push(`/${slug}`);
       setSearch ('');
     }
   }
 
-  return (   
+  return (
     <ThemeProvider enableSystem={true}>
       <header>
         <nav>
@@ -114,7 +114,7 @@ export default function App({ Component, pageProps }) {
           <ThemeChanger />
           <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="_blank">
             <span className="badge">
-              7       
+              1
               <Image src="/start_dark.svg" alt="Icono estrella."  width={8} height={8} />
             </span>
             <div data-hide-on-theme="dark">
