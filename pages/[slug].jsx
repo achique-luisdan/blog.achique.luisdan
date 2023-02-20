@@ -10,6 +10,7 @@ export default function Post ({source, frontmatter, posts}) {
       <Head>
         <title>{frontmatter.title}</title>
         <meta name="description" content={frontmatter.description} />
+        <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon"  href="/favicon.png" />
       </Head>

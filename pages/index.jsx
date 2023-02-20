@@ -11,6 +11,7 @@ export default function Home({ posts, tags }) {
       <Head>
         <title>Achique Luis Daniel🍊 | Frontend, Planificación y Autocuidado</title>
         <meta name="description" content="Blog sobre Desarrollo Web Frontend, Planificación y Autocuidado" />
+        <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon"  href="/favicon.png" />
       </Head>
