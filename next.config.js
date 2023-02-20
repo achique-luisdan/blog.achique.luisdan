@@ -6,14 +6,6 @@ const nextConfig = {
   images: {
     unoptimized : true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/robots.txt',
-        destination: '/api/robots'
-      }
-    ];
-  }
 };
 
 module.exports = nextConfig;
