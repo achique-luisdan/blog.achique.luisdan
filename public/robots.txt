@@ -1,5 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
 # Host
 Host: https://achique-luisdan.com
+
+# Sitemaps
+Sitemap: https://achique-luisdan.com/sitemap.xml
