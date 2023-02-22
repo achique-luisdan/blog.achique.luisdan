@@ -73,6 +73,14 @@ export async function getStaticPaths (){
       name: 'JavaScript',
       slug: 'javascript'
     },
+    {
+      name: 'Planificación',
+      slug: 'planning'
+    },
+    {
+      name: 'Autocuidado',
+      slug: 'selfcare'
+    },
   ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {

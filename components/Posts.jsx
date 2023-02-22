@@ -11,10 +11,10 @@ export default function Posts({ posts }) {
               <Link href={`/${post.slug}`} className="to-post">
                 <Image src={`/${post.tag}.svg`} alt="Icono del Tema" width={40} height={40} />
                 <div>
-                  <h3 className='title'> 
+                  <h3 className='title'>
                     { post.title }
                   </h3>
-                  <span className='date'> 
+                  <span className='date'>
                     { post.date }
                   </span>
                 </div>

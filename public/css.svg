@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="8.6748924mm"
-   height="9.752387mm"
-   viewBox="0 0 30.737808 34.555702"
+   width="30"
+   height="33.857838"
+   viewBox="0 0 28.125 31.741722"
    id="svg3476"
    version="1.1"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
@@ -74,7 +74,7 @@
          id="lpe_path-effect11551"
          style="fill:#379ad6;fill-opacity:1;stroke:#379ad6;stroke-width:0.55447px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          class="powerclip"
-         d="m 95.96964,123.98257 h 30.32695 v 32.73235 H 95.96964 Z m 8.82304,9.28697 0.44108,2.42606 h 6.27312 l -6.00357,2.48719 0.11027,2.41369 8.52752,-0.0368 -0.24504,3.32034 -2.68323,0.8209 -2.85476,-0.80865 -0.11027,-1.88683 -2.43819,-0.0123 0.2818,3.65116 5.01115,1.48251 5.0724,-1.42125 0.57586,-7.46159 -5.67277,-0.0613 5.96682,-2.5117 0.17153,-2.37693 z" />
+         d="m 96.27346,124.25999 h 29.71815 V 156.4273 H 96.27346 Z m 8.51922,9.00955 0.44108,2.42606 h 6.27312 l -6.00357,2.48719 0.11027,2.41369 8.52752,-0.0368 -0.24504,3.32034 -2.68323,0.8209 -2.85476,-0.80865 -0.11027,-1.88683 -2.43819,-0.0123 0.2818,3.65116 5.01115,1.48251 5.0724,-1.42125 0.57586,-7.46159 -5.67277,-0.0613 5.96682,-2.5117 0.17153,-2.37693 z" />
     </clipPath>
   </defs>
   <sodipodi:namedview
@@ -84,9 +84,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="142.32143"
-     inkscape:cy="46.428571"
+     inkscape:zoom="11.2"
+     inkscape:cx="18.616072"
+     inkscape:cy="13.928572"
      inkscape:document-units="px"
      inkscape:current-layer="g3013"
      showgrid="false"
@@ -117,12 +117,13 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-193.633,-376.9822)">
+     transform="translate(-193.633,-379.79618)">
     <g
        id="g3013"
        transform="translate(119,276.3622)">
       <g
-         id="g9549">
+         id="g9549"
+         transform="matrix(0.91499693,0,0,0.91856685,6.3440335,11.007782)">
         <path
            style="fill:#379ad6;fill-opacity:1;stroke:none;stroke-width:0.55447px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m 120.99161,129.27229 -19.71815,-0.0123 1.82586,19.92413 8.03387,2.24318 7.94831,-2.17171 z"

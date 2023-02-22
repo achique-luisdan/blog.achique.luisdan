@@ -9,7 +9,7 @@ export default function Home({ posts, tags }) {
   return (
     <>
       <Head>
-        <title>Achique Luis Daniel🍊 | Frontend, Planificación y Autocuidado</title>
+        <title>Achique Luis Daniel🍊| Frontend, Planificación y Autocuidado</title>
         <meta name="description" content="Blog sobre Desarrollo Web Frontend, Planificación y Autocuidado" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +33,7 @@ export default function Home({ posts, tags }) {
 }
 
 export async function getStaticProps(){
-  const posts = await getAllFilesMetadata(6);
+  const posts = await getAllFilesMetadata(5);
   let tags = [
     {
       name: 'HTML',
@@ -47,6 +47,14 @@ export async function getStaticProps(){
       name: 'JavaScript',
       slug: 'javascript'
     },
+    {
+      name: 'Planificación',
+      slug: 'planning'
+    },
+    {
+      name: 'Autocuidado',
+      slug: 'selfcare'
+    },
   ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {
@@ -59,8 +67,8 @@ export async function getStaticProps(){
     delete element.date;
     delete element.tag;
     delete element.description;
-    delete element.reading; 
-    return element; 
+    delete element.reading;
+    return element;
   });
 
   return {
