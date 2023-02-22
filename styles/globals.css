@@ -496,3 +496,11 @@ p {
 h3 {
   margin-bottom: 12px;
 }
+
+main.content p {
+  overflow: auto;
+}
+
+main.content p >  img {
+  width: min-content;
+}
