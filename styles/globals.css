@@ -296,6 +296,14 @@ main {
   main.home > section {
     width: 100%;
   }
+  .card-author {
+    flex-direction: column;
+  }
+
+  div.card-author img.circle-photo {
+    object-fit: fill;
+    min-width: max-content;
+  }
 }
 
 ul.posts {
@@ -503,4 +511,41 @@ main.content p {
 
 main.content p >  img {
   width: min-content;
+}
+
+.card-author {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  padding: 2%;
+
+}
+div.card-author img.circle-photo {
+  max-width: 15%;
+  margin: 1%;
+  border-radius: 100%;
+}
+.card-header img {
+  max-width: 20px;
+  max-height: 20px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+}
+.card-header h4 {
+  padding-bottom: 1.5%;
+}
+.card-header a {
+  text-decoration: none;
+  margin-left: 4%;
+  padding-bottom: 1%;
+}
+.card-author span {
+  display: inline-block;
+  font-style: italic;
+  padding-bottom: 1%;
+}
+.card-author p {
+  line-height: 24px;
 }

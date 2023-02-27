@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote";
 import Posts from "../components/Posts";
+import CardAuthor from "../components/CardAuthor";
 import Head from 'next/head';
 import { getFileBySlug, getAllFilesMetadata } from "../utils/reader-mdx";
 import { Title } from "../components/Title";
@@ -19,7 +20,9 @@ export default function Post ({source, frontmatter, posts}) {
         <Title content={frontmatter} isTag={ frontmatter.tag === 'is' }/>
         <MDXRemote { ...source} />
         <Posts posts={posts}/>
+        <CardAuthor post={frontmatter}></CardAuthor>
       </main>
+
     </>
   );
 }
@@ -34,8 +37,8 @@ export async function getStaticProps ({ params }){
     delete element.date;
     delete element.tag;
     delete element.description;
-    delete element.reading; 
-    return element; 
+    delete element.reading;
+    return element;
   });
   try {
     const {source, frontmatter} = await getFileBySlug(params.slug);
@@ -101,7 +104,7 @@ export async function getStaticPaths (){
   }));
   paths = [...paths , ...pathsTags];
   return {
-    paths, 
+    paths,
     fallback: "blocking"
   };
 }
