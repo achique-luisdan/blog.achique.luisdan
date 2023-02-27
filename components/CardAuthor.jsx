@@ -11,7 +11,7 @@ export default function CardAuthor({ post }) {
             <div class="card-header">
               <h4>{post.authorName}e</h4>
               <Link href={post.authorLink} target="_blank">
-                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA7LcF8_N6Z9jx9cx1IMWQgtDo-gmuhDcQSQ&usqp=CAU"   alt="Icono de enlace/link" width={40} height={40}/>
+                <Image src="/link.svg"   alt="Icono de enlace/link" width={40} height={40}/>
               </Link>
             </div>
             <span>{post.authorRole}</span>
@@ -19,7 +19,7 @@ export default function CardAuthor({ post }) {
           </div>
         </div>
       </section>
-    ); 
+    );
   }
   else {
     return (
