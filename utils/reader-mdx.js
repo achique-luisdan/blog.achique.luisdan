@@ -41,5 +41,5 @@ export const getAllFilesMetadata = (qty =-1) => {
     return {...data, slug: slug.replace('.mdx', '')};
   }).filter (element => {
     return element.tag !== 'is';
-  }).slice(0, qty);
+  }).sort((post, nextPost) =>   new Date(nextPost.date) - new Date(post.date)).slice(0, qty);
 };

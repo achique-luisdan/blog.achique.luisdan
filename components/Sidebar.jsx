@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Tags } from "./Tags";
 
-export function Sidebar ({tags}){
+export function Sidebar ({tags, quantityPosts}){
   return (
     <aside className="sidebar">
       <div>
@@ -24,7 +24,7 @@ export function Sidebar ({tags}){
       <p className="description">
         Joven soñador, apasionado del desarrollo de soluciones de software, con 7 años de experiencia, consultor y creador de contenidos educativos abiertos.
       </p>
-      <Tags tags={tags}></Tags>
+      <Tags tags={tags} quantityPosts={quantityPosts}></Tags>
     </aside>
   );
 }

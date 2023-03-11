@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from 'next/link';
 
-export function Tags ({ tags }){
+export function Tags ({ tags, quantityPosts }){
   return (
     <section>
       <h2>Contenidos</h2>
@@ -11,7 +11,7 @@ export function Tags ({ tags }){
             Temas
           </h4>
           <h4 className='qty'>
-            Artículos
+            Artículos • { quantityPosts }
           </h4>
         </li>
         {

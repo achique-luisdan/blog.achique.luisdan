@@ -15,7 +15,7 @@ export default function Posts({ posts }) {
                     { post.title }
                   </h3>
                   <span className='date'>
-                    { post.date }
+                    { new Date(post.date).toLocaleString('default', {  day: 'numeric', month: 'long',  year: 'numeric' }) }
                   </span>
                 </div>
               </Link>

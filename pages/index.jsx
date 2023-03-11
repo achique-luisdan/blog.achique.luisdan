@@ -5,7 +5,7 @@ import { getAllFilesMetadata } from '../utils/reader-mdx';
 import Posts from '../components/Posts';
 import { Sidebar } from '../components/Sidebar';
 
-export default function Home({ posts, tags }) {
+export default function Home({ posts, tags, quantityPosts }) {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ export default function Home({ posts, tags }) {
       </Head>
 
       <main className="container home">
-        <Sidebar tags={tags} />
+        <Sidebar tags={tags} quantityPosts={quantityPosts} />
         <section>
           <h1> Últimos Artículos </h1>
           <Posts posts={posts}></Posts>
@@ -71,8 +71,8 @@ export async function getStaticProps(){
     delete element.reading;
     return element;
   });
-
+  const quantityPosts = allPosts.length;
   return {
-    props: { posts, tags, titles }
+    props: { posts, tags, titles, quantityPosts }
   };
 }
