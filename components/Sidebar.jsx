@@ -22,7 +22,7 @@ export function Sidebar ({tags}){
         Software Developer
       </h3>
       <p className="description">
-        Joven soñador, apasionado del desarrollo de software de valor, con 7 años de experiencia, consultor y creador de contenidos educativos abiertos.
+        Joven soñador, apasionado del desarrollo de soluciones de software, con 7 años de experiencia, consultor y creador de contenidos educativos abiertos.
       </p>
       <Tags tags={tags}></Tags>
     </aside>
