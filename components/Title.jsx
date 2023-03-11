@@ -21,12 +21,12 @@ export function Title ({content, isTag}){
       <section className="title-content">
         <Image src={`/${content.tag}.svg`} alt="Icono del Tema" width={50} height={50} />
         <div>
-          <h1 className='title'> 
+          <h1 className='title'>
             { content.title }
           </h1>
-          <span className='date'> 
-            { content.date +' ' } 
-            • { content.reading } minutos de lectura 
+          <span className='date'>
+            { content.date +' ' }
+            • { content.reading } minutos de lectura
             • <Link href={ `https://github.com/achique-luisdan/blog.achique.luisdan/blob/main/posts/${content.slug}.mdx`} target="_blank">¿Errores o sugerencias? Edita el artículo</Link>
           </span>
         </div>

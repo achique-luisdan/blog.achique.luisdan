@@ -34,6 +34,7 @@ export default function Home({ posts, tags }) {
 
 export async function getStaticProps(){
   const posts = await getAllFilesMetadata(5);
+  const allPosts = await getAllFilesMetadata();
   let tags = [
     {
       name: 'HTML',
@@ -57,7 +58,7 @@ export async function getStaticProps(){
     },
   ];
   tags.map (tag => {
-    const postByTag = posts.filter (post => {
+    const postByTag = allPosts.filter (post => {
       return post.tag === tag.slug;
     });
     tag.qty = postByTag.length;
