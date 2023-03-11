@@ -6,11 +6,11 @@ export function Title ({content, isTag}){
     return (
       <section className="title-content">
         <div>
-          <h1 className='title'> 
+          <h1 className='title'>
             { content.title }
           </h1>
-          <span className='date'> 
-            { content.date } 
+          <span className='date'>
+            { content.date }
           </span>
         </div>
       </section>
@@ -25,7 +25,7 @@ export function Title ({content, isTag}){
             { content.title }
           </h1>
           <span className='date'>
-            { content.date +' ' }
+            { new Date(content.date).toLocaleString('default', {  day: 'numeric', month: 'long',  year: 'numeric' }) +' ' }
             • { content.reading } minutos de lectura
             • <Link href={ `https://github.com/achique-luisdan/blog.achique.luisdan/blob/main/posts/${content.slug}.mdx`} target="_blank">¿Errores o sugerencias? Edita el artículo</Link>
           </span>
