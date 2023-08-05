@@ -2,7 +2,7 @@
 
 ## Descripción (Description) 📋
 
-Blog sobre Frontend, Planificación y Autocuidado 
+Blog sobre Frontend, Planificación y Autocuidado
 ## Características (Features) ❤️
 
 * Implementa Static Site Generation (SSG).
@@ -67,7 +67,7 @@ npm run lint-fix
 npm run build
 ```
 
-Compilado final se genera en la carpeta **out**. 
+Compilado final se genera en la carpeta **out**.
 
 ## Reseñas (Reviews) 💞
 
