@@ -56,6 +56,10 @@ export async function getStaticProps(){
       name: 'Autocuidado',
       slug: 'selfcare'
     },
+    {
+      name: 'SQL',
+      slug: 'sql'
+    },
   ];
   tags.map (tag => {
     const postByTag = allPosts.filter (post => {
