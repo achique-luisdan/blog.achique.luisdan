@@ -113,7 +113,7 @@ export default function App({ Component, pageProps }) {
           <ThemeChanger />
           <Link href="https://github.com/achique-luisdan/blog.achique.luisdan" className="github" target="_blank">
             <span className="badge">
-              3
+              4
               <Image src="/start_dark.svg" alt="Icono estrella."  width={8} height={8} />
             </span>
             <div data-hide-on-theme="dark">
