@@ -98,12 +98,19 @@ FROM cars AS c
 WHERE c.release_year >= 2006 AND c.release_year <= 2019;
 ```
 
-### 9) Opción 2. Usando operador especial BETWEEN
+Opción 2. Usando operador especial BETWEEN
 
 ```sql
 SELECT c.license, c.brand, c.model, c.price
 FROM cars AS c
 WHERE c.release_year BETWEEN 2006 AND 2019;
+```
+
+### 9) Listar carros aplicando un 30 % de descuento sobre el precio.
+
+```sql
+SELECT c.license, c.brand, c.model, c.price, c.price- (c.price * 30)/100 AS price_with_30_percentage_off
+FROM cars AS c;
 ```
 
 ### 10) Consultar carros que cuestan entre un rango de precios.
@@ -148,7 +155,7 @@ IN ('Volkswagen', 'Chevrolet', 'Hyundai');
 
 ### 13) Listar todos los carros de un empleado en específico.
 
-**Paso 1.** Consultar tablas juntas de carros y empleados.
+Paso 1. Consultar tablas juntas de carros y empleados.
 
 ```sql
 SELECT c.license, c.brand, c.model, e.*
