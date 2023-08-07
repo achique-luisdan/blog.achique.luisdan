@@ -14,4 +14,193 @@ Pero ahora bien, ¿Qué conceptos y comandos requieres saber, si o si para hacer
 
 Pues tengo algo que creo que te encantará. Es un esquema, con una sola mirada podrás explorar todo lo que necesitas para tus consultas SQL básicas e intermedias.
 
+Además de **15 ejemplos** de consultas para practicar y aplicar lo aprendido. Cuanto más practiques algo, mejor te volverás en ello. Aplica cuando aprendes a tocar un instrumento musical, u otro idioma, también aplica para SQL.
+
 ![Esquema: Consultas SQL](https://tizanasoft.com/static/03_CONSULTAS_SQL.png)
+
+## 15 Ejemplos de Consultas SQL
+
+### 1) Listar todas las marcas de carros.
+
+```sql
+SELECT c.brand
+FROM cars AS c;
+```
+
+### 2) Listar solo las marcas distintas.
+
+Filtra filas únicas no repetidas. Si al menos una columna es distinta entonces se considera verdadero.
+
+```sql
+SELECT DISTINCT c.brand
+FROM cars AS c;
+```
+
+### 3) Listar modelos distintos de carros de una marca específica.
+
+```sql
+SELECT DISTINCT c.model
+FROM cars AS c
+WHERE c.brand = 'Honda';
+```
+
+### 4) Listar carros distintos lanzados en un año específico.
+
+```sql
+SELECT DISTINCT c.brand, c.model
+FROM cars AS c
+WHERE c.release_year = 2019;
+```
+
+### 5) Listar los carros que cuestan menos de un cierto precio.
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE c.price < 20000;
+```
+
+### 6) Listar carros de la marca Toyota que fueron lanzados en 2021 o que cuestan menos de $20.000
+
+```sql
+SELECT c.license, c.brand, c.model, c.release_year, c.price
+FROM cars AS c
+WHERE c.brand = 'Toyota'
+AND c.release_year = 2021
+OR c.price < 20000
+```
+
+### 7) Consultar carros que no sean modelo Corolla
+
+Opción 1. Usando operadores relacionales != , < >
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE c.model != 'Corolla';
+```
+
+Opción 2. Usando operador relacional =, negando la condición.
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE NOT c.model = 'Corolla';
+```
+
+### 8) Consultar carros lanzados entre un rango de años específicos.
+
+Opción 1. Usando operadores relacionales y lógicos
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE c.release_year >= 2006 AND c.release_year <= 2019;
+```
+
+### 9) Opción 2. Usando operador especial BETWEEN
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE c.release_year BETWEEN 2006 AND 2019;
+```
+
+### 10) Consultar carros que cuestan entre un rango de precios.
+
+```sql
+SELECT c.license, c.brand, c.model, c.price
+FROM cars AS c
+WHERE c.price BETWEEN 20000 AND 30000;
+```
+
+### 11) Listar carros cuyo año de lanzamiento sea 2019 o 2022
+
+Opción 1. Usando operadores relacionales y lógicos
+
+```sql
+SELECT c.license, c.brand, c.model, c.release_year, c.price
+FROM cars AS c
+WHERE c.release_year = 2019
+OR c.release_year = 2022
+```
+
+Opción 2. Usando comando especial IN
+
+Se usa para comparar un valor entre un conjunto de valores.
+El comando IN devuelve verdadero si el valor está en el conjunto de valores y FALSO si no está en el conjunto de valores.
+
+```sql
+SELECT c.license, c.brand, c.model, c.release_year, c.price
+FROM cars AS c
+WHERE c.release_year
+IN (2019, 2022);
+```
+
+### 12) Listar carros de las marcas Volkswagen, Chevrolet o Hyundai
+
+```sql
+SELECT c.license, c.brand, c.model, c.release_year, c.price
+FROM cars AS c
+WHERE c.brand
+IN ('Volkswagen', 'Chevrolet', 'Hyundai');
+```
+
+### 13) Listar todos los carros de un empleado en específico.
+
+**Paso 1.** Consultar tablas juntas de carros y empleados.
+
+```sql
+SELECT c.license, c.brand, c.model, e.*
+FROM cars AS c, employees AS e;
+```
+
+Cuando juntamos la tabla carros y la tabla empleados sin filtrar para relacionar los datos.
+Entonces se muestran muchos filas duplicadas todos las filas empleados se multiplican por todas las filas de carros.
+
+**Esto es muy importante, para evitar que la consulta devuelva filas duplicados, puedes agregar una cláusula WHERE que compare las clave primaria y foráneas. De esa forma se muestran que carro pertenecen a que empleado.**
+
+
+Paso 2. Identificar a que empleado pertenece que carro.
+
+```sql
+SELECT c.license, c.brand, c.model, e.*
+FROM cars AS c, employees AS e
+WHERE c.employee_dni = e.dni;
+```
+
+Paso 3. Filtrar solo los carros de un empleado específico por el DNI.
+
+```sql
+SELECT c.license, c.brand, c.model, e.*
+FROM cars AS c, employees AS e
+WHERE c.employee_dni = e.dni
+AND e.dni = '20003738';
+```
+
+### 14) Filtrar solo los carros de empleados con el cargo Abogado o Abogada.
+El comando LIKE sirve para comparar textos, pero no distingue entre mayúsculas y minúsculas.
+Se usa _ como comodín para indicar que allí puede ir cualquier carácter, pero solo 1 carácter.
+
+```sql
+SELECT c.license, c.brand, c.model, e.*
+FROM cars AS c, employees AS e
+WHERE c.employee_dni = e.dni
+AND e.role LIKE 'Abogad_';
+```
+
+### 15) Filtrar solos carros de empleadas con el cargo de Diseñadora.
+
+Puede ser Diseñadora de moda, Diseñadora de interiores, Diseñadora UI o cualquier otra rama del Diseño
+
+Se usa % como comodín para indicar que allí pueden ir varios caracteres cualquiera.
+
+
+```sql
+SELECT c.license, c.brand, c.model, e.*
+FROM cars AS c, employees AS e
+WHERE c.employee_dni = e.dni
+AND e.role LIKE 'Diseñadora%';
+```
+
+Se pueden colocar comodines antes, después o en medio de un texto.
