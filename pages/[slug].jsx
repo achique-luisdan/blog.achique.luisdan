@@ -84,6 +84,10 @@ export async function getStaticPaths (){
       name: 'Autocuidado',
       slug: 'selfcare'
     },
+    {
+      name: 'SQL',
+      slug: 'sql'
+    },
   ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {
