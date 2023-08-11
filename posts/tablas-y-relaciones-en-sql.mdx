@@ -1,0 +1,67 @@
+---
+title: 'Tablas y relaciones en SQL'
+date: '2023-8-10'
+tag: 'sql'
+description: 'Comandos básicos para crear y relacionar tablas.'
+reading: '7'
+---
+
+En las bases de datos relacionales, las tablas se utilizan para almacenar datos de una manera que sea fácil de acceder y analizar. Organizadas en filas y columnas. Cada columna guarda un atributo o campo de la tabla. Una fila de la tabla sería un registro o tupla.
+
+Las claves primarias y foráneas son dos de los conceptos más importantes en SQL.
+Se utilizan para crear relaciones entre tablas. Estas relaciones ayudan a garantizar que los datos en las tablas estén consistentes y evitar duplicidad.
+
+Estoy feliz de compartir los comandos básicos que necesitas para crear, modificar, relacionar y modificar tablas en SQL.
+
+Por cierto,  te tengo algo que en ocasiones no te dicen los equipos de trabajo sobre SQL. Pero que hoy si no los sabes, te podrás enterar. Se trata de una serie de convenciones o buenas prácticas que se utilizan para los nombres de tablas, columnas y restricciones.
+
+![Mapa Conceptual: Tablas y relaciones en SQL](https://tizanasoft.com/static/03_TABLAS_Y_RELACIONES_EN_SQL.png)
+
+
+## Convenciones y buenas prácticas
+
+*  Las tablas y atributos deberán estar en ingles.
+
+* Para el nombramiento de tablas y atributos se usara snake_case (ejemplo_ejemplo) este estándar especifica escribir las palabras compuestas agregando un _ en  los espacios suprimiendo estos y con letras en minúsculas.
+
+* Únicamente se utilizarán caracteres alfabéticos, salvo que por la naturaleza del nombre se necesiten dígitos numéricos.
+
+* Evitar el uso de caracteres de puntuación o símbolos.
+
+* Las letras acentuadas se reemplazarán con las equivalentes no acentuadas, y en lugar de la letra eñe (ñ) se utilizará (nn).
+
+* El nombre elegido debe ser lo más descriptivo posible, evitando términos ambiguos o que se presten a distintas interpretaciones.
+
+* El nombre no debe abreviarse, salvo que por necesidad deban especificarse más de una palabra en el mismo.
+
+* Agregar comentarios a las tablas y columnas, sobre todo a las de tipo de dato booleanos.
+
+## Ejemplo
+
+Aquí tienes un script SQL que sigue las buenas prácticas que se han especificado:
+
+```sql
+-- DROP TABLE IF EXISTS employees CASCADE;
+
+CREATE TABLE employees (
+    dni VARCHAR(20),
+    names VARCHAR(255) NOT NULL,
+    surnames VARCHAR(255),
+    role VARCHAR(255),
+    CONSTRAINT pk_employees PRIMARY KEY (dni)
+);
+
+-- DROP TABLE IF EXISTS cars;
+
+CREATE TABLE cars (
+    license VARCHAR(20),
+    brand VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    price FLOAT,
+    release_year INT,
+    employee_dni VARCHAR(20) NOT NULL,
+    CONSTRAINT pk_cars PRIMARY KEY (license),
+    CONSTRAINT fk_employees_employee_dni FOREIGN KEY (employee_dni) REFERENCES employees(dni)  ON DELETE SET NULL
+);
+
+```

@@ -12,7 +12,9 @@
         "Propóngase",
         "rehype",
         "selfcare",
-        "unoptimized"
+        "tupla",
+        "unoptimized",
+        "VARCHAR"
     ],
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#f9ac68",
