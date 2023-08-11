@@ -8,15 +8,14 @@ reading: '7'
 
 En las bases de datos relacionales, las tablas se utilizan para almacenar datos de una manera que sea fácil de acceder y analizar. Organizadas en filas y columnas. Cada columna guarda un atributo o campo de la tabla. Una fila de la tabla sería un registro o tupla.
 
-Las claves primarias y foráneas son dos de los conceptos más importantes en SQL.
+Las **claves primarias y foráneas** son dos de los conceptos más importantes en SQL.
 Se utilizan para crear relaciones entre tablas. Estas relaciones ayudan a garantizar que los datos en las tablas estén consistentes y evitar duplicidad.
 
-Estoy feliz de compartir los comandos básicos que necesitas para crear, modificar, relacionar y modificar tablas en SQL.
-
-Por cierto,  te tengo algo que en ocasiones no te dicen los equipos de trabajo sobre SQL. Pero que hoy si no los sabes, te podrás enterar. Se trata de una serie de convenciones o buenas prácticas que se utilizan para los nombres de tablas, columnas y restricciones.
+Estoy feliz de compartir los comandos básicos que necesitas para **crear, modificar, relacionar y eliminar tablas en SQL**.
 
 ![Mapa Conceptual: Tablas y relaciones en SQL](https://tizanasoft.com/static/03_TABLAS_Y_RELACIONES_EN_SQL.png)
 
+Por cierto,  te tengo algo que en ocasiones no te dicen los equipos de trabajo sobre SQL. Pero que hoy si no los sabes, te podrás enterar. Se trata de una serie de convenciones o buenas prácticas que se utilizan para los nombres de tablas, columnas y restricciones.
 
 ## Convenciones y buenas prácticas
 
@@ -61,7 +60,8 @@ CREATE TABLE cars (
     release_year INT,
     employee_dni VARCHAR(20) NOT NULL,
     CONSTRAINT pk_cars PRIMARY KEY (license),
-    CONSTRAINT fk_employees_employee_dni FOREIGN KEY (employee_dni) REFERENCES employees(dni)  ON DELETE SET NULL
+    CONSTRAINT fk_employees_employee_dni FOREIGN KEY (employee_dni)
+        REFERENCES employees(dni)  ON DELETE SET NULL
 );
 
 ```
