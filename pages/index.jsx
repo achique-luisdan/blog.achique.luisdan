@@ -119,7 +119,7 @@ export default function Home({ posts, tags, quantityPosts }) {
               Ver todos
             </h2>
           </Link>
-          <h3 className='title-section-projects'>
+          <h3 className='title-section-projects primary'>
               He trabajado en proyectos con...
           </h3>
           <p>
