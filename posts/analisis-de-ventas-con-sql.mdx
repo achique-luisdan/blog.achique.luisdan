@@ -1,0 +1,179 @@
+---
+title: 'Análisis de ventas con SQL'
+date: '2023-9-3'
+tag: 'sql'
+description: 'Paso a paso para hacer un gráfico de ventas con SQL.'
+reading: '10'
+---
+
+En este artículo, se explica cómo una agencia de viajes puede utilizar SQL para identificar el destino más vendido del mes. El proceso de análisis se divide en cinco pasos.
+
+Explora estos cinco pasos para el análisis de datos que te ayudarán a realizar con mayor facilidad tus proyectos analíticos.
+
+## Paso 1. Entender
+
+Una agencia de viajes desea realizar una oferta del destino más vendido del mes.
+
+Bien, ¿listos analistas?, ¡logrémoslo!
+
+Como analista de datos, se toma el tiempo para comprender completamente el problema, la necesidad o objetivo del análisis. Además del valor o importancia que el análisis debe aportar a la empresa. ¿Qué la empresa está tratando de resolver?
+
+
+## Paso 2. Preparar
+A partir del paso anterior, se pasa a la recolección de los datos necesarios, para eso hay que responder. ¿De dónde vamos extraer los datos de los destinos vendidos en el mes?
+
+Imaginemos, que Marcela de ventas, lleva un registro de los boletos vendidos en una hoja de cálculo de Google Sheet.
+
+
+![Hoja de cálculo de Ventas en Google Sheet](https://tizanasoft.com/static/VENTAS_EN_GOOGLE_SHEET.png)
+
+Exploramos la hoja de cálculo, y nos damos cuenta que de cada boleto se registra: código, fecha, destino, cantidad de puestos y cliente.
+
+![Exploración de tabla de Ventas](https://tizanasoft.com/static/EXPLORAR_TABLA_DE_VENTAS.png)
+
+Preparamos los datos, exportamos la hoja de cálculo en formato .csv, que tiene una estructura de valores separados por comas. Es uno de los formatos más utilizados en el tratamiento de datos. Más adelante nos facilitará la importación de la información a una base de datos.
+
+Crearemos una base de datos llamada viajes.
+
+```sql
+CREATE DATABASE viajes;
+```
+
+Crearemos una tabla llamada temporal: Con las columnas código, fecha, destino, cantidad de puestos y cliente.
+
+Cada columna guarda un atributo o campo del boleto. Le definiremos un tipo de dato a cada columna.
+
+```sql
+CREATE TABLE temporal (
+  codigo VARCHAR(255) NOT NULL,
+  fecha DATE NOT NULL,
+  destino VARCHAR(255) NOT NULL,
+  cantidad_puestos INTEGER NOT NULL,
+  cliente VARCHAR(255) NOT NULL
+);
+```
+
+Importamos los datos del archivo .csv a la tabla temporal. Donde cada boleto va ser una fila de la tabla.
+
+## Paso 3. Modelar
+
+En este punto, si bien es cierto que podríamos comenzar a analizar los datos.
+
+La verdad, se sugiere pasar antes por una etapa de modelado.
+
+Para eliminar redundancias de datos y obtener así un mejor rendimiento.
+
+Por ejemplo, los valores de la columna destino vemos que se vuelven a escribir muchas veces.
+
+Se podría crear una tabla destinos y otra tabla boletos, y relacionarlas para evitar esta redundancia.
+
+La tabla destinos va tener las columnas: id (que será un identificador único para cada destino) y la columna nombre.
+
+```sql
+CREATE TABLE destinos (
+  id serial,
+  nombre VARCHAR(255) NOT NULL,
+  CONSTRAINT pk_destinos PRIMARY KEY (id),
+  CONSTRAINT uniq_destinos_nombre UNIQUE (nombre)
+);
+```
+La clave primaria va a ser el id. Y el nombre va a ser único para que no existan destinos con el mismo nombre.
+
+La tabla de boletos va tener las columnas: código (que identifica a cada boleto), fecha, cantidad de puestos y cliente.
+Además, tendrá la columna destino que será una clave foránea que hace referencia la tabla destinos.
+
+```sql
+CREATE TABLE boletos (
+  codigo VARCHAR(255) NOT NULL,
+  fecha DATE NOT NULL,
+  cantidad_puestos INTEGER NOT NULL,
+  cliente VARCHAR(255) NOT NULL,
+  destino INTEGER,
+  CONSTRAINT fk_boletos_destino FOREIGN KEY (destino)
+    REFERENCES destinos (id) ON DELETE SET NULL
+);
+```
+
+Para llenar estas nuevas tablas (destinos y boletos), vamos hacer algunas consultas de la tabla temporal.
+
+Listamos sólo las filas con nombres de destinos distintos (para evitar que se repita el destino).
+
+```sql
+SELECT DISTINCT destino AS nombre
+FROM temporal;
+```
+
+Usamos un alias de la columna destino para que coincida con la columna nombre de la tabla destinos.
+Exportamos esta consulta a archivo .csv y la importamos en la tabla destinos.
+
+Haremos una consulta de las tablas juntas: temporal y destinos, donde coincida el nombre del destino.
+
+```sql
+SELECT
+    te.codigo,
+    te.fecha,
+    te.cantidad_puestos,
+    te.cliente,
+    te.destino,
+    de.id,
+    de.nombre
+FROM
+    temporal AS te,
+    destinos AS de
+WHERE
+    te.destino = de.nombre;
+```
+
+Usaremos solo: código, fecha, cantidad de puestos, cliente y destino.
+
+Pero en lugar de usar el nombre del destino, utilizaremos el id que es la clave foránea de la relación.
+
+Para eso, optamos por un alias en la columna id, renombrando a destino.
+
+```sql
+SELECT
+    te.codigo,
+    te.fecha,
+    te.cantidad_puestos,
+    te.cliente,
+    de.id AS destino
+FROM
+    temporal AS te,
+    destinos AS de
+WHERE
+    te.destino = de.nombre;
+```
+
+## Paso 4. Analizar
+
+Excelente, ahora que tenemos un modelo más idóneo.
+Realizaremos las consultas para saber cuál fue el destino más vendido del mes.
+
+```sql
+SELECT
+    de.nombre AS destino,
+    SUM (cantidad_puestos) AS cantidad
+FROM
+    boletos AS bo,
+    destinos AS de
+WHERE
+    bo.destino = de.id
+GROUP BY
+    de.nombre
+ORDER BY
+    SUM (cantidad_puestos) DESC;
+```
+
+Lo tenemos casi listo.
+
+## Paso 5. Visualizar
+
+Finalmente, utilizaremos la herramienta de pgAdmin 4, para generar un gráfico circular de nuestros datos.
+
+![Gráfico de Ventas en pgAdmin 4](https://tizanasoft.com/static/GRAFICO_DE_VENTAS_DE_DESTINO.png)
+
+
+Así facilitaremos la comprensión y la toma de decisiones.
+
+En conclusión, el artículo proporciona una guía práctica sobre cómo utilizar SQL para realizar análisis de datos. El proceso puede aplicarse a una variedad de problemas de negocios.
+
