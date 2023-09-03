@@ -20,10 +20,10 @@ Como analista de datos, se toma el tiempo para comprender completamente el probl
 
 
 ## Paso 2. Preparar
+
 A partir del paso anterior, se pasa a la recolección de los datos necesarios, para eso hay que responder. ¿De dónde vamos extraer los datos de los destinos vendidos en el mes?
 
 Imaginemos, que Marcela de ventas, lleva un registro de los boletos vendidos en una hoja de cálculo de Google Sheet.
-
 
 ![Hoja de cálculo de Ventas en Google Sheet](https://tizanasoft.com/static/VENTAS_EN_GOOGLE_SHEET.png)
 
@@ -54,6 +54,8 @@ CREATE TABLE temporal (
 ```
 
 Importamos los datos del archivo .csv a la tabla temporal. Donde cada boleto va ser una fila de la tabla.
+
+<iframe className="video" src="https://tizanasoft.com/static/IMPORTAR_DATOS_EN_PG_ADMIN_4.mp4"></iframe>
 
 ## Paso 3. Modelar
 
@@ -104,7 +106,10 @@ FROM temporal;
 ```
 
 Usamos un alias de la columna destino para que coincida con la columna nombre de la tabla destinos.
+
 Exportamos esta consulta a archivo .csv y la importamos en la tabla destinos.
+
+![¿Cómo exportar datos en pgAdmin 4](https://tizanasoft.com/static/EXPORTAR_EN_PG_ADMIN_4.png)
 
 Haremos una consulta de las tablas juntas: temporal y destinos, donde coincida el nombre del destino.
 
@@ -171,7 +176,6 @@ Lo tenemos casi listo.
 Finalmente, utilizaremos la herramienta de pgAdmin 4, para generar un gráfico circular de nuestros datos.
 
 ![Gráfico de Ventas en pgAdmin 4](https://tizanasoft.com/static/GRAFICO_DE_VENTAS_DE_DESTINO.png)
-
 
 Así facilitaremos la comprensión y la toma de decisiones.
 
