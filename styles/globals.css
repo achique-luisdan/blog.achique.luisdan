@@ -559,3 +559,165 @@ iframe.video {
   min-height: 800px;
   background: var(--background);
 }
+
+/* Section Projects */
+
+section.projects {
+  max-width: 100%;
+  margin: auto;
+  margin-top: 2%;
+  display: block;
+  border-radius: 10px;
+  background-color: var(--background-accent);
+}
+
+hr {
+  width: 80%;
+  margin: auto;
+  padding: 0px;
+}
+
+.carousel {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3%;
+  padding-top: 4%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 4%;
+  overflow-x: hidden;
+}
+
+.slide {
+  animation: move 12s linear infinite;
+  position: relative;
+  border-radius: 12px;
+  border: solid 1px var(--foreground);
+
+}
+
+.active {
+  grid-area: 1 / 2 / 1 / 3;
+  background-color: var(--foreground-hover);
+  height: 110%;
+  top: -5%;
+}
+
+.slide > img {
+  object-fit:contain;
+  height: 240px;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.slide > a {
+  display: block;
+  text-decoration: none;
+  color:var(--foreground);
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+}
+
+.first {
+  grid-area: 1 / 1 / 1 / 2;
+  transform: translateX(-10%);
+}
+
+.last {
+  grid-area: 1 / 3 / 1 / 3;
+}
+
+@keyframes move {
+  0% {
+    right: 0px;
+  }
+  50% {
+    right: -100px;
+  }
+  100% {
+    right: -200px;
+  }
+}
+
+section.projects {
+  margin-top: 24px;
+}
+
+h3.title-section-projects {
+  font-size: 2em;
+  margin-top: 24px;
+}
+
+div.card-review {
+ text-align: center;
+ margin-top: 18px;
+ padding: 2%;
+ animation: opacity 10s infinite linear;
+}
+
+div.card-review > img.circle-photo {
+  object-fit: fill;
+  min-width: max-content;
+  margin: 1%;
+  border-radius: 100%;
+  opacity: 1;
+}
+
+.card-header-review img {
+  max-width: 20px;
+  max-height: 20px;
+}
+.card-header-review {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+}
+.card-header-review h4 {
+  padding-bottom: 1.5%;
+  color: var(--primary);
+}
+
+.card-header-review a {
+  text-decoration: none;
+  padding-bottom: 1%;
+}
+
+.card-review span {
+  display: block;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.card-review span.company {
+  color:var(--background-hover);
+  margin-top: 12px;
+  margin-bottom:16px;
+  font-style: italic;
+}
+.card-review p {
+  line-height: 24px;
+  width: 80%;
+  margin: auto;
+}
+
+
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
