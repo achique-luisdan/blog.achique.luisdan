@@ -721,3 +721,7 @@ div.card-review > img.circle-photo {
     opacity: 0;
   }
 }
+
+a.primary.portafolio {
+  padding-left: 2%;
+}

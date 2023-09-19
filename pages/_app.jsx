@@ -97,6 +97,12 @@ export default function App({ Component, pageProps }) {
             BLOG
             </span>
           </Link>
+          <Link href='/portafolio' className='primary portafolio'>
+            <strong>
+            ✨ Portafolio
+            </strong>
+          </Link>
+
           <div className="box-search">
             <Image src="/lens.svg" alt="Icono de lupa." className="lens" width={10} height={18} />
             <input list="posts" placeholder="Buscar" className="search" onChange={(e) => { navigationTo(e.target.value); }} value={ search }/>

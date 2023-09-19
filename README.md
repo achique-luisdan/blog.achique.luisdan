@@ -21,6 +21,12 @@ Blog sobre Frontend, Planificación y Autocuidado
 
 * Tarjeta para autores invitados (Card Autor)
 
+* Portafolio de proyectos (Portafolio).
+
+* Carousel de proyectos.
+
+* Animaciones de reseñas de clientes felices.
+
 ## Herramientas (Tools) 🛠️
 
 Las herramientas utilizadas en el desarrollo del proyecto fueron:
