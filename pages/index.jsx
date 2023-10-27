@@ -35,7 +35,7 @@ export default function Home({ posts, tags, quantityPosts }) {
 }
 
 export async function getStaticProps(){
-  const posts = await getAllFilesMetadata(5);
+  const posts = await getAllFilesMetadata(8);
   const allPosts = await getAllFilesMetadata();
   let tags = [
     {
@@ -61,6 +61,10 @@ export async function getStaticProps(){
     {
       name: 'SQL',
       slug: 'sql'
+    },
+    {
+      name: 'Python',
+      slug: 'python'
     },
   ];
   tags.map (tag => {

@@ -88,6 +88,10 @@ export async function getStaticPaths (){
       name: 'SQL',
       slug: 'sql'
     },
+    {
+      name: 'Python',
+      slug: 'python'
+    },
   ];
   tags.map (tag => {
     const postByTag = posts.filter (post => {

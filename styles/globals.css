@@ -659,7 +659,6 @@ div.card-review {
  text-align: center;
  margin-top: 18px;
  padding: 2%;
- animation: opacity 10s infinite linear;
 }
 
 div.card-review > img.circle-photo {
@@ -706,20 +705,6 @@ div.card-review > img.circle-photo {
   line-height: 24px;
   width: 80%;
   margin: auto;
-}
-
-
-
-@keyframes opacity {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 a.primary.portafolio {

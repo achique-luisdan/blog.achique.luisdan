@@ -1,0 +1,85 @@
+---
+title: 'Entornos Virtuales en Python'
+date: '2023-10-27'
+tag: 'python'
+description: 'Introducción a los entornos virtuales y sus beneficios. Con breve paso a paso sobre cómo crear, activar, desactivar y eliminar entornos virtuales.'
+reading: '3'
+---
+
+![Maletín Elegante Boceto](https://tizanasoft.com/static/VENV.png)
+
+Existía la hipótesis de por qué utilizar un entorno virtual en Python, pero las prácticas de campo permitieron contemplar que los entornos virtuales son como maletines elegantes que guardan los paquetes necesarios para que el proyecto funcione.
+
+Aquí hay un lista resumen de los beneficios de usar entornos virtuales en Python:
+
+## 1) Independencia
+
+Cada entorno virtual es independiente uno del otro, por eso es ideal tener un entorno para cada proyecto. De esa forma se evita chocar con los paquetes y versiones de otro proyecto.
+
+Si un proyecto usa Numpy, pero otro usa sólo Django, y si otro tiene la versión 2 de Django, pero hay otro proyecto que usa la versión 3. Con los entornos virtuales esos paquetes puedan quedar separados uno de otro en sus respectivos entornos de proyecto.
+
+Sin duda los entornos virtuales son como maletines elegantes que debería usar todo buen programador Python.
+
+### Instalar paquete de entornos virtuales
+
+```bash
+pip3 install virtualenv
+```
+
+### Crear entorno virtual
+
+```bash
+virtualenv venv
+```
+
+### Activar entorno virtual
+
+En MS Windows
+
+```bash
+venv\Scripts\activate.ps1
+```
+
+En GNU Linux/Mac OS
+
+```bash
+source venv/bin/activate
+```
+
+### Desactivar el entorno virtual
+
+```bash
+deactivate
+```
+
+### Eliminar entorno virtual
+
+```bash
+rm -rf venv
+```
+
+## 2) Portabilidad
+
+Además, los entornos virtuales pueden ser portables. Con un gestor de paquetes como pip. Se puede fijar una lista de todos los paquetes del proyecto.
+
+Esta lista se suele encontrar en un archivo con el nombre de requirements.txt
+Para generarlo se puede usar el comando de pip:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Para instalar los paquetes desde este archivo se usa el siguiente comando de pip.
+
+```bash
+pip install -r requirements.txt
+```
+
+Esto le da la ventaja al proyecto de que puede ser llevado a algún contenedor docker o una máquina virtual. Puesto que solo se tendría que crear un entorno virtual e instalar los paquetes desde el archivo requirements.txt.
+
+## 3) Trabajo en Equipo
+
+ Los entornos virtuales permiten a los desarrolladores trabajar con diferentes versiones de Python y paquetes de Python sin afectar las configuraciones locales de cada participante. Esto facilita la colaboración al proporcionar un entorno aislado para cada proyecto, evitando conflictos de compatibilidad.
+
+
+Si aún no estás usando entornos virtuales en tus proyectos de Python, te recomiendo que los pruebes. Son una herramienta esencial para evitar conflictos de paquetes y mejorar la colaboración en equipo.
