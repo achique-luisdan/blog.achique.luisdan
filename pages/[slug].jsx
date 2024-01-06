@@ -81,6 +81,10 @@ export async function getStaticPaths (){
       slug: 'planning'
     },
     {
+      name: 'Estudio',
+      slug: 'study'
+    },
+    {
       name: 'Autocuidado',
       slug: 'selfcare'
     },

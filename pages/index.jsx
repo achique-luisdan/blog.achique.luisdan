@@ -55,6 +55,10 @@ export async function getStaticProps(){
       slug: 'planning'
     },
     {
+      name: 'Estudio',
+      slug: 'study'
+    },
+    {
       name: 'Autocuidado',
       slug: 'selfcare'
     },
