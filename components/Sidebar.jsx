@@ -22,7 +22,7 @@ export function Sidebar ({tags, quantityPosts}){
         Software Developer
       </h3>
       <p className="description">
-        Joven soñador, apasionado del desarrollo de soluciones de software, con 7 años de experiencia, consultor y creador de contenidos educativos abiertos.
+      ¡Hola! Soy Luis, desarrollador de software y fundador de la empresa TizanaSoft. Con 7 años de experiencia, mi pasión es crear soluciones tecnológicas. También soy escritor de un blog de tecnología en español. Abordo desde habilidades técnicas como SQL y Python hasta aspectos de bienestar personal y profesional, como planificación y auto-cuidado.
       </p>
       <Tags tags={tags} quantityPosts={quantityPosts}></Tags>
     </aside>
