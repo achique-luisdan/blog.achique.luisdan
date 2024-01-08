@@ -1,8 +1,8 @@
 const NotFoundPage = () => {
   return (
     <main className="content">
-      <p class="zoom-area"><b>Página no encontrada</b> </p>
-      <section class="error-container">
+      <p className="zoom-area"><b>Página no encontrada</b> </p>
+      <section className="error-container">
         <span><span>4</span></span>
         <span>0</span>
         <span><span>4</span></span>

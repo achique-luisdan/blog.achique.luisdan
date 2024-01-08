@@ -1,0 +1,317 @@
+---
+title: '¿Como conectar Python con PostgreSQL?'
+date: '2024-01-8'
+tag: 'python'
+description: 'Conexión paso a paso de Python y PostgreSQL haciendo uso de un entorno virtual y python-decouple.'
+reading: '15'
+authorName: 'Edwuard Madriz'
+authorPhoto: 'https://tizanasoft.com/blog/EDWUARD_MADRIZ.png'
+authorLink: 'https://www.facebook.com/EdwuardMadriz'
+authorRole: 'Desarrollador Web'
+authorResume: 'Soy desarrollador web con más de un año de experiencia, mi fortaleza radica en trabajar en el “detrás de escena” de los sitios web que es la parte que se encarga de que toda la lógica de una página web funcione, también tengo habilidades para trabajar en la parte visual.'
+---
+
+PostgreSQL es un potente sistema de gestión de bases de datos relacional, y Python es un lenguaje de programación versátil y fácil de usar. Conectarlos te permite interactuar con bases de datos PostgreSQL directamente desde Python, lo que es útil para diversas aplicaciones. Aquí te mostraremos cómo realizar esta conexión paso a paso. En este artículo, aprenderemos a usar un entorno virtual, python-decouple, y un archivo .env para lograr esto.
+
+Utilizando un entorno virtual, python-decouple, y un archivo .env, proteger las credenciales de tu base de datos y la configuración sensible fuera del código fuente. Esto ayuda a mantener un entorno seguro y facilita la gestión de la configuración en diferentes entornos, como desarrollo, pruebas y producción.
+
+Al seguir este método, tu aplicación podrá acceder de manera segura a las credenciales de la base de datos PostgreSQL sin exponer información sensible en el código.
+
+## Configuración del entorno virtual
+Comencemos creando y activando un entorno virtual para nuestro proyecto:
+
+```python
+python -m venv nombre_de_mi_entorno_virtual
+```
+
+```python
+python -m venv env
+```
+
+Activa el entorno virtual:
+
+En Windows:
+```bash
+env\Scripts\activate
+```
+En macOS/Linux:
+```bash
+source env/bin/activate
+```
+
+## Instalación de bibliotecas
+Primero, asegúrate de tener instaladas las bibliotecas necesarias:
+```bash
+pip install psycopg2-binary python-decouple
+```
+
+**psycopg2** es una biblioteca popular de **Python** para interactuar con bases de datos **PostgreSQL**.
+
+## Configuración de variables de entorno
+- Crea un archivo llamado **.env** en el directorio de tu proyecto.
+- Agrega las variables de entorno necesarias en el archivo **.env**:
+
+```bash
+DB_HOST=tu_host
+DB_DATABASE=tu_base_de_datos
+DB_USER=tu_usuario
+DB_PASSWORD=tu_contraseña
+```
+
+Asegúrate de reemplazar **tu_host**, **tu_base_de_datos**, **tu_usuario** y **tu_contraseña** con los valores correctos.
+
+## Conexión a la base de datos
+Para conectar **Python** con **PostgreSQL**, sigue estos pasos:
+
+### Importar psycopg2 y decouple
+```python
+import psycopg2
+from decouple import config
+```
+
+### Definir los parámetros de conexión
+Ahora, vamos a utilizar **python-decouple** para acceder a las variables de entorno desde el archivo **.env** en tu script **Python**:
+
+```python
+# Obtener los parámetros de conexión desde el archivo .env
+conn_params = {
+    "host": config('DB_HOST'),
+    "database": config('DB_DATABASE'),
+    "user": config('DB_USER'),
+    "password": config('DB_PASSWORD')
+}
+```
+
+**config('NOMBRE_VARIABLE')** lee el valor de la variable **NOMBRE_VARIABLE** desde el archivo **.env**.
+
+### Establecer la conexión
+```python
+try:
+    # Conectarse a la base de datos
+    conn = psycopg2.connect(**conn_params)
+    print("¡Conexión exitosa!")
+except psycopg2.Error as e:
+    print("Error al conectar a PostgreSQL:", e)
+```
+
+## Ejecutar consultas
+Una vez conectado, puedes ejecutar consultas **SQL** utilizando el objeto conn que has creado. Por ejemplo:
+```python
+try:
+    # Crear un cursor
+    cursor = conn.cursor()
+
+    # Ejecutar una consulta SQL
+    cursor.execute("SELECT * FROM tabla_ejemplo")
+
+    # Obtener los resultados
+    rows = cursor.fetchall()
+    
+    # Mostrar los resultados
+    for row in rows:
+        print(row)
+
+    # Cerrar el cursor
+    cursor.close()
+except psycopg2.Error as e:
+    print("Error al ejecutar la consulta:", e)
+finally:
+    # Cerrar la conexión
+    conn.close()
+```
+
+## Ejemplo practico
+En este ejemplo, la tabla "películas nominadas" contiene información sobre las películas nominadas, como su título, año de estreno y director. Mientras que la tabla "ganadores" en categorías de premios **Golden Globes 2024** tiene registros de las películas que ganaron en ciertas categorías y quiénes fueron los ganadores en esas categorías.
+
+![Tabla de películas nominadas](https://tizanasoft.com/blog/tabla-1.png)
+
+
+![Tabla de ganadores](https://tizanasoft.com/blog/tabla-2.png)
+
+Creamos las tablas:
+
+```python
+# Consulta para crear la tabla peliculas_nominadas
+create_peliculas_table = """
+CREATE TABLE peliculas_nominadas (
+    id serial PRIMARY KEY,
+    titulo varchar(50) NOT NULL,
+    anio_estreno int NOT NULL,
+    director varchar(70) NOT NULL
+);
+"""
+
+# Consulta para crear la tabla ganadores
+create_ganadores_table = """
+CREATE TABLE ganadores (
+    id serial PRIMARY KEY,
+    categoria varchar(50) NOT NULL,
+    id_pelicula int NOT NULL,
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas_nominadas (id)
+);
+"""
+
+# Ejecutar las consultas para crear las tablas
+cursor.execute(create_peliculas_table)
+cursor.execute(create_ganadores_table)
+
+# Confirmar los cambios en la base de datos
+conn.commit()
+
+print("Tablas creadas exitosamente.")
+```
+
+Insertamos datos a la tabla de **peliculas_nominadas**:
+
+```python
+# Comandos INSERT para agregar datos a la tabla peliculas_nominadas
+insert_commands = [
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Anatomy of a Fall', 2024, 'Justine Triet')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Killers of the Flower Moon', 2023, 'Martin Scorsese')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Oppenheime', 2023, 'Christopher Nolan')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('The Zone of Interest', 2023, 'Jonathan Glazer')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Past Lives', 2023, 'Celine Song')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Air', 2023, 'Ben Affleck')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('American Fiction', 2023, 'Cord Jefferson')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Barbie', 2023, 'Greta Gerwig')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Holdovers, The', 2023, 'Alexander Payne')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('May December', 2023, 'Todd Haynes')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Poor Things', 2023, 'Yorgos Lanthimos')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Boy and the Heron, The', 2023, 'Hayao Miyazaki')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Elemental', 2023, 'Peter Sohn')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Spider-Man: Across the Spider-Verse', 2023, 'Joaquim Dos Santos, Kemp Powers y Justin K. Thompson')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Suzume', 2022, 'Makoto Shinkai')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('The Super Mario Bros. Movie', 2023, 'Aaron Horvath, Michael Jelenic y Pierre Leduc')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Guardians of the Galaxy Vol. 3', 2023, 'James Gunn')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('John Wick: Chapter 4', 2023, 'Chad Stahelski')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Mission: Impossible - Dead Reckoning Part 1', 2023, 'Christopher McQuarrie')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Taylor Swift: The Eras Tour', 2023, 'Sam Wrench')",
+    "INSERT INTO peliculas_nominadas (titulo, anio_estreno, director) VALUES ('Maestro ', 2023, 'Bradley Cooper')"
+]
+
+# Ejecutar los comandos INSERT uno por uno
+for command in insert_commands:
+    cursor.execute(command)
+
+# Confirmar los cambios en la base de datos
+conn.commit()
+
+print("Datos insertados exitosamente en la tabla peliculas_nominadas.")
+```
+
+Insertamos datos a la tabla de **ganadores**:
+```python
+# Comandos INSERT para agregar datos a la tabla ganadores
+insert_commands = [
+    "INSERT INTO ganadores (categoria, id_pelicula) VALUES ('Mejor Película Animada', 16)",
+    "INSERT INTO ganadores (categoria, id_pelicula) VALUES ('Mejor Película - Comedia / Musical', 6)",
+    "INSERT INTO ganadores (categoria, id_pelicula) VALUES ('Mejor Película - Drama', 3)",
+    "INSERT INTO ganadores (categoria, id_pelicula) VALUES ('Logro cinematográfico y de taquilla', 8)",
+    "INSERT INTO ganadores (categoria, id_pelicula) VALUES ('Mejor Director', 19)",
+]
+
+# Ejecutar los comandos INSERT uno por uno
+for command in insert_commands:
+    cursor.execute(command)
+
+# Confirmar los cambios en la base de datos
+conn.commit()
+
+print("Datos insertados exitosamente en la tabla ganadores.")
+```
+
+Realizamos las consultas:
+```python
+# Consulta: Películas nominadas sin premio
+query1 = """
+SELECT *
+FROM peliculas_nominadas
+WHERE id NOT IN (SELECT id_pelicula FROM ganadores);
+"""
+cursor.execute(query1)
+rows1 = cursor.fetchall()
+print("Películas nominadas sin premio:")
+for row in rows1:
+    print(row)
+```
+Resultados :
+
+![Resultados de la primera consulta](https://tizanasoft.com/blog/query_1.png)
+
+```python
+# Consulta: Categorías de premios y películas ganadoras
+query2 = """
+SELECT g.categoria, p.titulo
+FROM ganadores g
+JOIN peliculas_nominadas p ON g.id_pelicula = p.id;
+"""
+cursor.execute(query2)
+rows2 = cursor.fetchall()
+print("\nCategorías de premios y películas ganadoras:")
+for row in rows2:
+    print(row)
+```
+Resultados :
+
+![Resultados de la segunda consulta](https://tizanasoft.com/blog/query_2.png)
+
+```python
+# Consulta: Contar películas nominadas por director
+query3 = """
+SELECT director, COUNT(*) AS num_nominaciones
+FROM peliculas_nominadas
+GROUP BY director;
+"""
+cursor.execute(query3)
+rows3 = cursor.fetchall()
+print("\nContar películas nominadas por director:")
+for row in rows3:
+    print(row)
+```
+
+Resultados :
+
+![Resultados de la tercera consulta](https://tizanasoft.com/blog/query_3.png)
+
+```python
+# Consulta: Películas ganadoras y su director
+query4 = """
+SELECT p.titulo, p.director
+FROM peliculas_nominadas p
+JOIN ganadores g ON p.id = g.id_pelicula;
+"""
+cursor.execute(query4)
+rows4 = cursor.fetchall()
+print("\nPelículas ganadoras y su director:")
+for row in rows4:
+    print(row)
+```
+Resultados :
+
+![Resultados de la cuarta consulta](https://tizanasoft.com/blog/query_4.png)
+
+```python
+# Consulta: Año con más nominaciones
+query5 = """
+SELECT anio_estreno, COUNT(*) AS num_nominaciones
+FROM peliculas_nominadas
+GROUP BY anio_estreno
+ORDER BY num_nominaciones DESC
+LIMIT 1;
+"""
+cursor.execute(query5)
+rows5 = cursor.fetchall()
+print("\nAño con más nominaciones:")
+for row in rows5:
+    print(row)
+```
+
+Resultados :
+
+![Resultados de la quinta consulta](https://tizanasoft.com/blog/query_5.png)
+
+Recuerda adaptar las consultas **SQL** según las necesidades de tu aplicación y manejar adecuadamente los errores utilizando bloques **try** y **except**.
+
+¡Ahora estás listo para conectar **Python** con **PostgreSQL** de manera segura y eficiente!
+
+### Autor Invitado
