@@ -1,0 +1,243 @@
+---
+title: 'Combinaciones en SQL'
+date: '2024-01-11'
+tag: 'sql'
+description: 'Aprende a combinar tablas con consultas Joins SQL, conceptos y comandos.'
+reading: '12'
+authorName: 'Edwuard Madriz'
+authorPhoto: 'https://tizanasoft.com/blog/EDWUARD_MADRIZ.png'
+authorLink: 'https://www.facebook.com/EdwuardMadriz'
+authorRole: 'Desarrollador Web'
+authorResume: 'Soy desarrollador web con más de un año de experiencia, mi fortaleza radica en trabajar en el “detrás de escena” de los sitios web que es la parte que se encarga de que toda la lógica de una página web funcione, también tengo habilidades para trabajar en la parte visual.'
+---
+
+Los Joins en SQL son herramientas poderosas para combinar datos de múltiples tablas. Permiten extraer información de diferentes fuentes y unirla en una sola consulta. Los Joins son la clave para aprovechar al máximo el potencial de los datos en una base de datos relacional.
+
+Pero los Joins no son solo para expertos en bases de datos. Con un conocimiento básico, puedes utilizarlos para realizar consultas simples que revelen información valiosa. Desde combinar nombres de clientes con sus productos favoritos hasta extraer información detallada sobre transacciones, los Joins te brindan la capacidad de crear consultas poderosas y personalizadas.
+
+## ¿Qué son los Joins?
+
+Los Joins son operaciones que combinan filas de dos o más tablas basadas en una condición relacionada. Estas condiciones pueden ser relaciones de clave primaria y extranjera, igualdad de valores en columnas específicas u otros criterios definidos por el usuario. Vamos a revisar todos los tipos de Joins disponibles:
+
+## Inner Join
+
+El Inner Join es el tipo de Join más común. Combina filas de dos tablas basándose en una condición especificada en la cláusula ON. Solo las filas que cumplen con la condición se incluyen en el resultado.
+
+```sql
+SELECT * 
+FROM tabla1
+INNER JOIN tabla2 ON tabla1.columna = tabla2.columna;
+```
+## Ejemplo práctico
+
+Ilustramos el INNER JOIN con un ejemplo, partiendo de dos tablas con una relación de muchos a muchos. 
+
+La tabla “Meses” contiene todos los meses del año y sus iniciales, junto a sus números de identificación (Id).
+
+La tabla “Códigos” contiene un código de tres dígitos, junto a sus números de identificación (Id).
+
+La relación de Muchos a Muchos se suele representar en otra tabla denominada tabla intermedia. Para este caso la llamaremos Combinaciones y contendrá el identificador de la tabla Meses referenciado como (mese_id), el identificador de la tabla código referenciado como (codigo_id) y el número de identificación de la tabla intermedia (id).
+
+![Tablas INNER JOIN: Consultas SQL](https://tizanasoft.com/blog/table-inner-1.png)
+
+La consulta sería la siguiente:
+
+```sql
+SELECT meses.inicial, meses.id, codigos.codigo
+FROM meses
+INNER JOIN combinaciones ON meses.id = combinaciones.meses_id
+INNER JOIN codigos ON codigos.id = combinaciones.codigo_id
+```
+
+Resultados:
+
+![consulta 1 INNER JOIN: Consultas SQL](https://tizanasoft.com/blog/inner-query-1.png)
+
+## Left Join o (Left  Outer Join)
+
+El Left Join devuelve todas las filas de la tabla izquierda y las filas coincidentes de la tabla derecha. Si no hay coincidencias, se llenan con valores nulos.
+
+```sql
+SELECT * 
+FROM tabla1
+LEFT JOIN tabla2 ON tabla1.columna = tabla2.columna;
+```
+
+## Ejemplo práctico
+
+Partiremos creando las siguientes tablas:
+
+![Tablas LEFT y RIGHT JOIN: Consultas SQL](https://tizanasoft.com/blog/table-left-right.png)
+
+Ahora podemos realizar unas consultas:
+
+**-- Mostrar todos los escritores con sus libros, si tienen alguno:**
+
+```sql
+SELECT e.id, e.nombre AS autor, l.titulo AS libro
+FROM escritores AS e
+LEFT JOIN autores AS a ON e.id = a.id_escritor
+LEFT JOIN libros AS l ON a.id_libro = l.id;
+```
+
+Resultados:
+
+![consulta 1 LEFT JOIN: Consultas SQL](https://tizanasoft.com/blog/left-query-1.png)
+
+**-- Listar todo los libros asociados a un casillero, si tiene asociado:**
+
+```sql
+SELECT l.id, l.titulo, c.nombre AS categoria
+FROM libros AS l
+LEFT JOIN categorias AS c ON l.id_categoria = c.id;
+```
+
+Resultados:
+
+![consulta 2 LEFT JOIN: Consultas SQL](https://tizanasoft.com/blog/left-query-2.png)
+
+**-- Mostrar los libros y sus categorías, si están categorizados:**
+
+```sql
+SELECT l.id, l.titulo AS libro, c.nombre AS categoria
+FROM libros AS l
+LEFT JOIN categorias AS c ON l.id_categoria = c.id;
+```
+
+Resultados:
+
+![consulta 3 LEFT JOIN: Consultas SQL](https://tizanasoft.com/blog/left-query-3.png)
+
+## Right Join o (Right Outer Join)
+
+El Right Join es similar al Left Join, pero devuelve todas las filas de la tabla derecha y las filas coincidentes de la tabla izquierda.
+
+```sql
+SELECT * 
+FROM tabla1
+RIGHT JOIN tabla2 ON tabla1.columna = tabla2.columna;
+```
+
+## Ejemplo práctico
+
+Para este ejemplo podemos usar las tablas que creamos en el ejemplo anterior, las consultas son las siguientes:
+
+**-- Mostrar todas las categorías con los libros que pertenecen a ellas, incluso si algunas categorías no tienen libros asociados:**
+
+```sql
+SELECT c.id, c.nombre AS categoria, l.titulo AS libro
+FROM categorias AS c
+RIGHT JOIN libros AS l ON c.id = l.id_categoria;
+```
+
+Resultados:
+
+![consulta 1 RIGHT JOIN: Consultas SQL](https://tizanasoft.com/blog/right-query-1.png)
+
+**-- Mostrar todos los libros con sus autores, incluso si no tienen ningún autor asociado:**
+
+```sql
+SELECT l.id, l.titulo AS libro, e.nombre AS autor
+FROM autores AS a
+RIGHT JOIN libros AS l ON a.id_libro = l.id
+RIGHT JOIN escritores AS e ON a.id_escritor = e.id;
+```
+
+Resultados:
+
+![consulta 2 RIGHT JOIN: Consultas SQL](https://tizanasoft.com/blog/right-query-2.png)
+
+## Full Join o (Full Outer Join)
+
+El Full Outer Join devuelve todas las filas cuando hay una coincidencia en alguna de las tablas. Si no hay coincidencias, se llenan con valores nulos.
+
+```sql
+SELECT * 
+FROM tabla1
+FULL OUTER JOIN tabla2 ON tabla1.columna = tabla2.columna;
+```
+
+FULL OUTER JOIN es compatible con algunos sistemas de gestión de bases de datos como PostgreSQL, Oracle, y SQL Server. Esta cláusula FULL OUTER JOIN combina los resultados de ambos LEFT OUTER JOIN y RIGHT OUTER JOIN, asegurando que se devuelvan todas las filas de ambas tablas, y donde no haya coincidencias, se incluirán valores NULL.
+
+**NOTA:** la palabra "outer" se usa para indicar que estas consultas incluirán filas que no tienen correspondencias en las tablas que se combinan.En contraste, el INNER JOIN solo devuelve filas cuando hay coincidencias en ambas tablas. Si no hay una coincidencia en ambas tablas, la fila no se incluirá en el resultado.
+
+
+## Left Outer Join Exclusivo
+
+El Left Outer Join Exclusivo devuelve filas de la tabla izquierda que no tienen coincidencias en la tabla derecha. Las filas de la tabla derecha serán nulas si no hay coincidencias. En SQL estándar, no existe una sintaxis directa para un "Left Outer Join Exclusivo" (también conocido como Left Excluding Join o Left Anti Join).
+
+Sin embargo, se puede simular un Left Excluding Join utilizando técnicas como subconsultas o cláusulas NOT IN o NOT EXISTS.
+
+También se puede realizar de la siguiente manera:
+
+```sql
+SELECT * 
+FROM tabla1
+LEFT JOIN tabla2 ON tabla1.columna = tabla2.columna
+WHERE tabla2.columna IS NULL;
+```
+
+## Right Outer Join Exclusivo
+
+El Right Outer Join Exclusivo devuelve filas de la tabla derecha que no tienen coincidencias en la tabla izquierda. Las filas de la tabla izquierda serán nulas si no hay coincidencias. En SQL estándar, tampoco existe una sintaxis directa para un "Right Outer Join Exclusivo" (también conocido como Right Excluding Join o Right Anti Join). Similar al caso del Left Excluding Join.
+
+```sql
+SELECT * 
+FROM tabla1
+RIGHT JOIN tabla2 ON tabla1.columna = tabla2.columna
+WHERE tabla1.columna IS NULL;
+```
+
+## Full Outer Join Exclusivo
+
+El Full Outer Join Exclusivo, también conocido como "Full Outer Excluding Inner Join" o "Anti Join", no se encuentra directamente disponible en la sintaxis estándar de SQL como los otros tipos de Joins. Sin embargo, se puede simular utilizando otras operaciones como Union y Joins.
+
+En términos de conjuntos, un Full Outer Join Exclusivo (o Anti Join) devuelve filas que no tienen una correspondencia entre las dos tablas. Esto significa que se excluyen las filas que coinciden en ambas tablas y se muestran sólo aquellas que no tienen coincidencias.
+
+La mejor manera de realizar un Full Outer Join Exclusivo es utilizando combinaciones de Left y Right Joins con condiciones de exclusión para eliminar las filas que coinciden en ambas tablas
+
+```sql
+SELECT * 
+FROM tabla1
+LEFT JOIN tabla2 ON tabla1.columna = tabla2.columna
+WHERE tabla2.columna IS NULL
+UNION
+SELECT * 
+FROM tabla1
+RIGHT JOIN tabla2 ON tabla1.columna = tabla2.columna
+WHERE tabla1.columna IS NULL;
+```
+
+Dado que no existe una sintaxis específica para el Full Outer Join Exclusivo en SQL estándar, su implementación depende de la combinación de otros tipos de Joins y condiciones de exclusión para lograr el resultado deseado.
+
+En un diagrama de Venn, el Full Outer Join Exclusivo mostraría las áreas fuera de la intersección, excluyendo cualquier superposición que exista entre las tablas.
+
+![diagrama de Venn Full Outer Join Exclusivo: Consultas SQL](https://tizanasoft.com/blog/diagrama-venn-1.png)
+
+## Cross Join 
+
+El CROSS JOIN es un tipo de Join que produce el producto cartesiano de dos tablas. Devuelve todas las combinaciones de filas de ambas tablas, lo que resulta en un número de filas igual al producto de las filas en ambas tablas.
+
+```sql
+SELECT * 
+FROM tabla1
+CROSS JOIN tabla2;
+```
+
+## Self Join
+
+Un SELF JOIN es una operación en la que una tabla se une a sí misma. Se utiliza cuando se desea comparar filas dentro de una misma tabla.
+
+Por ejemplo, si tienes una tabla de empleados donde hay una columna para el supervisor de cada empleado, puedes usar un SELF JOIN para comparar empleados con sus supervisores dentro de la misma tabla:
+
+```sql
+SELECT e1.nombre AS empleado, e2.nombre AS supervisor
+FROM empleados e1
+INNER JOIN empleados e2 ON e1.supervisor_id = e2.id;
+```
+
+Esto devolverá una lista de empleados con sus respectivos supervisores.
+
+En un diagrama de Venn, un SELF JOIN no se representa típicamente, ya que se trata de unir una tabla consigo misma y no implica la intersección de múltiples conjuntos.
+
+### Autor Invitado
