@@ -1,0 +1,217 @@
+---
+title: 'Análisis de problemas: Más recetas'
+date: '2024-1-16'
+tag: 'python'
+description: ''
+reading: '7'
+---
+
+***05 junio de 2019*** - ***Gabriella Bifano*** - ***Ingeniera en Informática***
+
+Cuando deseamos preparar un plato ideal y sabroso, vamos directamente al título de una receta cualquiera. Este título puede llevar algunos términos desconocidos, los cuales averiguamos a qué se refiere para entender de qué se trata. Digamos que el título de la receta es el problema que queremos resolver.
+
+![Nombre de receta: tartletas ](https://tizanasoft.com/static/01_TARTLETAS.png)
+
+
+En este caso buscamos **¿qué son tartletas?** y **¿qué es chabacano?** en la cocina.
+
+Al definir o analizar lo primero que establecemos es la **salida**, es decir el plato que queremos realizar, lo podemos ver en una imagen. Esta será la **salida**, la meta que se quiere alcanzar.
+
+![Foto de receta: tartletas ](https://tizanasoft.com/static/02_TARTLETAS.png)
+
+Para poder hacer este plato requerimos unos ingredientes, unos insumos, lo que correspondería a los datos o **entradas**. Estos ingredientes los dividimos en tipos y cantidades.
+
+![Ingredientes de receta: tartletas ](https://tizanasoft.com/static/03_TARTLETAS.png)
+
+Cuando ya tenemos todos nuestros ingredientes vamos a los pasos que nos indica la receta. Para realizar una receta seguimos paso a paso las indicaciones para preparar el plato que deseamos, al seguir los pasos al pie de la letra, desde el primero hasta la último, el resultado debe ser el indicado en la fotografía.
+
+Esos pasos de la receta es lo que definimos en el **proceso**, son las instrucciones donde utilizamos los datos de **entrada** para lograr un resultado de **salida**.
+
+![Instrucciones de receta: tartletas ](https://tizanasoft.com/static/04_TARTLETAS.png)
+
+Podemos encontrar una similitud entre las recetas de cocina y el análisis de problemas computacionales.
+
+## ¿Qué es un problema?
+
+*“Un problema se puede definir como una situación en la cual se trata de alcanzar una meta y para lograrlo se deben hallar unos medios y unas estrategias” (Moursuand, 1999).*
+
+Los problemas computacionales se refieren al tratamiento o procesamiento de datos, ya que las computadoras estrictamente lo que procesan es datos. Estos problemas deben encontrarse en torno a un problema real para automatización de operaciones y así simplificar la tarea cotidiana.
+
+## Análisis del Problema
+
+La primera fase de la resolución de un problema con computadora es el análisis del problema.
+
+Esta fase requiere una clara definición. Primero se debe entender el enunciado: separar palabras o frases no conocidas, buscar su significado, discriminar entre lo que es relevante y lo que no, cómo leer el enunciado, aprender a clasificar cuál es el objetivo del enunciado para que comprenda que es lo que tienen que resolver.
+
+Es un estudio minucioso de la situación planteada de tal manera de poder imaginarse la situación a la cual se le va a dar solución y comenzar el análisis del problema. Esta etapa requiere de un máximo de imaginación y creatividad por parte del programador.
+
+Para definir bien un problema es conveniente responder:
+
+### ¿Cuál es la salida deseada?
+
+Visualizar la salida, lo que debe ser el resultado, lo que se quiere que vea el usuario.
+
+### ¿Qué entrada requiere?
+
+Que se necesita que el usuario coloque para poder dar la solución. Determinar los insumos (datos), lo que puede variar, lo que se necesita para obtener el resultado.
+
+### ¿Cuáles son los pasos precisos y secuenciales que se deben definir para partir de la entrada y obtener la salida?
+
+Colocar en orden las ideas para utilizar los datos y obtener el resultado.
+
+Se debe trazar el curso de un conjunto de acciones, y sus operaciones, que permitan orientar hasta alcanzar la respuesta al problema, plantear la solución.
+
+## Ejemplo: Batalla Culinaria
+
+
+En un colegio culinario, los estudiantes se encuentran realizando batallas culinarias, en las que dos estudiantes presentan un plantillo ante tres jurados, que realizan su calificación de 1 a 20 puntos. La victoria se la lleva el participante con el mayor promedio.
+
+A partir de las consideraciones del planteamiento anterior construya un programa que permita de forma automática determinar al ganador de la batalla culinaria.
+
+### 1.- Análisis del Problema (S/E/P)
+
+**Salida:** Ganador de la batalla culinaria.
+
+**Entrada:** Calificaciones de los tres jurados a ambos participantes.
+
+**Proceso:** Inicialmente se procede a leer o capturar las tres calificaciones del primer estudiante (calf1, calf2, calf3) posteriormente se suman y se dividen entre tres  para calcular el promedio. Seguidamente se repite el proceso con el segundo estudiante, y después de tener ambos promedio (prom1, prom2) se comprueba cual de los dos promedios es el mayor y en base a esto se muestra un mensaje con el ganador, en dado caso que tengan promedios iguales se emitirá un mensaje de empate o algo similar.
+
+### 2.-Diseño del Algoritmo
+
+	Un algoritmo es una secuencia de pasos bien definidos, ordenados y finitos que conducen a la solución del problema.
+
+	Se suelen utilizar para representarlos: Lenguaje Natural, Pseudocódigo y Diagrama de flujo.
+
+**Pseudocódigo**
+
+```
+Función calcular_promedio (calf1, calf2, calf3): Real
+	Definir total, prom Como Real
+	total = calf1 + calf2 + calf3
+	prom = total/3
+	Retornar prom
+Fin Función
+
+Función determinar_ganador (estudiante1, prom1, estudiante2, prom2): Caracteres
+	Si prom1 > prom2 Entonces
+		ganador = estudiante1
+	Sino prom2 > prom1 Entonces
+		ganador = estudiante2
+	Sino prom1 = prom2 Entonces
+		ganador = "Empate"
+	FinSi
+	Retornar ganador
+Fin Función
+
+INICIO
+	Definir estudiante, estudiante1, estudiante2 Como Caracteres
+	Definir calf1, calf2, calf3, prom1, prom2 Como Real;
+	Definir i Como Entero
+	Para i = 0 Hasta 2 Hacer
+		Mostrar "Nombre del Estudiante N°", i+1
+		Leer estudiante
+		Mostrar "Calificaciones:”
+		Mostrar "Jurado #1:"
+		Leer calf1
+		Mostrar "Jurado #2:"
+		Leer calf2
+		Mostrar "Jurado #3:"
+		Leer calf3
+		Si i = 0 Entonces
+			estudiante1 = estudiante
+			prom1 = calcular_promedio(calf1, calf2, calf3)
+		SiNo
+			estudiante2 = estudiante
+			prom2= calcular_promedio(calf1, calf2, calf3)
+		Fin Si
+	Fin Para
+	Mostrar "Ganador: ", determinar_ganador (estudiante1, prom1, estudiante2, prom2)
+FIN
+```
+
+### 3.- Codificación o implementación
+
+Este es el código fuente del programa, implementado mediante el lenguaje de programación Python v3.7.3:
+
+```python
+def calcular_promedio (calf1, calf2, calf3):
+    total = 0.0
+    prom = 0.0
+    total = calf1 + calf2 + calf3
+    prom = total / 3
+    return prom
+
+def determinar_ganador (estudiante1, prom1, estudiante2, prom2):
+    ganador = '?'
+    if prom1 > prom2 :
+        ganador = estudiante1
+    elif prom2 > prom1 :
+        ganador = estudiante2
+    elif prom1 == prom2 :
+        ganador = 'Empate'
+    return ganador
+
+if __name__ == "__main__":
+    estudiante = ''
+    estudiante1 = ''
+    estudiante2 = ''
+    calf1 = 0.0
+    calf2 = 0.0
+    calf3 = 0.0
+    prom1 = 0.0
+    prom2 = 0.0
+    for i in range(0, 2):
+        print ('Nombre del Estudiante #', i+1)
+        estudiante = input()
+        print('Calificaciones:')
+        print ('Jurado #1:')
+        calf1 = float (input())
+        print ('Jurado #2:')
+        calf2 = float (input())
+        print ('Jurado #3:')
+        calf3 = float (input())
+        if i == 0:
+            estudiante1 = estudiante
+            prom1 = calcular_promedio(calf1, calf2, calf3)
+        else:
+            estudiante2 = estudiante
+            prom2= calcular_promedio(calf1, calf2, calf3)
+    print ('Ganador: ', determinar_ganador (estudiante1, prom1, estudiante2, prom2))
+
+```
+
+## Conclusión
+
+El análisis es de gran importancia y es necesario dedicarle tiempo y esfuerzo ya que es la estructura principal de la solución al problema. Dado que se busca una solución por computadora se precisan especificaciones detalladas de entrada y salida. Donde se contemple exactamente lo que debe hacer el programa y el resultado o solución deseada.
+
+## 15 Ejercicios Propuestos
+
+**1.** Un coach de bateo quiere determinar cuales son los jugadores que tienen un average mayor al promedio de bateo del equipo.
+
+**2.** Una agencia de viajes desea realizar una promoción especial del destino más vendido en el mes, para ello deben llevar un registro de los boletos vendidos.
+
+**3.** Mariem se encuentra organizando los podcat de su móvil, para ello desea agruparlos por tema y ordenarlos por duración.
+
+**4.** Romulo profesor de literatura desea expresar en términos la calificación de sus estudiantes: terror (0-3), suspenso (4-6), acción (7-9), comedia (10).
+
+**5.** Algoritmo para calcular un cupón de descuento en libros. Dado que el comprador adquiere 3 libros o más  Cuando ingresa un código de descuento valido. Entonces se le realiza una rebaja del 30%.
+
+**6.** William tiene una tienda donde alquila historietas usadas, donde su costo depende de su precio de compra menos un descuento por el estado del ejemplar: excelente (10%), bueno (20%), aceptable (25%), deteriorado (30%), dañado (50%).
+
+**7.** Atlético “Las Adjuntas”, tiene cinco delanteros pero solo desea convocar a dos: el primero con un perfil goleador con el mayor promedio de efectividad en goles y otro con el mayor número de asistencia.
+
+**8.** Roberto ha recopilado una serie de artículos de historia, y para su mayor compresión desea listarlos en orden cronológica.
+
+**9.** Un comedor a las afueras de Tokio se encuentra ofertando onigiris, este es una pelota de arroz rellena de algún ingrediente. Para el éxito de la promoción pregunto a más de 50 comensales: ¿Cuál es el relleno su preferencia?. Ahora desea representar mediante un histograma las respuestas.
+
+**10.** La editorial ‘Fermín’ desea relanzar sus 5 revistas más vendidas, para ello recopiló la siguiente información de cada revista: código, título, cantidad de páginas y el número de ejemplares vendidos.
+
+**11.** El restaurante de Juan Cuesta ofrece unos sabrosos jugos naturales, pero recientemente recibió un suministro de frutas muy extenso, por lo que desea listarlas  por su tiempo de descomposición para reducir perdidas.
+
+**12.** Una compañía de seguros ofrece un monto de cobertura máxima del 65% en base a la cotización actual de la vivienda y los inmuebles del empleado, siempre que este tenga un mínimo de 5 años de antigüedad en la empresa. 
+
+**13.** La tienda de medicina naturalista ‘Amargo día’ desea ofrecer un catalogo en linea donde se puedan consultar los productos por plantas medicinales y acción terapéutica (diurético, analgésico, etc).
+
+**14.** Margo ha inaugura un restaurante que ofrece una carta de delicatessen, una delicatessen se define como un par: Plato – Bebida. Dado que las bebidas se clasifican por calidad ella desea determinar cuales son todas las combinaciones posibles.
+
+**15.** Una arqueóloga ha viajado a Perú para conocer algunos monumentos. Por lo que quiere llevar una bitácora diaria: Donde por cada monumento desea registrar una lista enumerada con sus puntos y que de forma automática al 12 puntos, se realice un respaldo de lista a un archivo de texto plano y se envié al correo electrónico.
