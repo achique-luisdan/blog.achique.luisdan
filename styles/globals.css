@@ -3,7 +3,7 @@
 
 :root {
   --primary: #f79137;
-  --background: #dadada;
+  --background: white;/*#dadada*/
   --background-hover: #ccccccff;
   --foreground: #333333;
   --foreground-hover: #f2f2f2;
